@@ -7,75 +7,96 @@
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #0d0d0d;
-      color: #00ffcc;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
     }
     header {
-      padding: 2rem;
-      background: #111;
+      background-color: #004466;
+      color: white;
+      padding: 2rem 1rem;
       text-align: center;
-      border-bottom: 1px solid #00ffcc;
     }
-    h1 {
-      font-size: 2.5rem;
-      margin: 0;
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      font-size: 1.2rem;
+      margin-top: 0;
     }
     .section {
       padding: 2rem;
-      border-bottom: 1px dashed #00ffcc;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .section img {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      margin: 1rem 0;
+      border-radius: 10px;
     }
     .section h2 {
-      color: #00ffff;
-      font-size: 1.8rem;
-      margin-bottom: 0.5rem;
+      font-size: 2rem;
+      margin-top: 1rem;
+      color: #004466;
     }
     .section p {
-      font-size: 1rem;
-      line-height: 1.6;
+      font-size: 1.1rem;
+      line-height: 1.7;
     }
     footer {
       text-align: center;
       padding: 1rem;
-      background: #111;
+      background: #004466;
+      color: white;
       font-size: 0.9rem;
-      color: #888;
+    }
+    .editable-company {
+      font-weight: bold;
+      color: #006699;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Anand IT Solutions</h1>
-    <p>Start your digital transformation journey with us</p>
+    <h1 contenteditable="true" class="editable-company">Anand IT Solutions</h1>
+    <p>We engineer digital transformation for a smarter tomorrow.</p>
   </header>
 
   <div class="section">
     <h2>Website Development</h2>
-    <p>Custom websites, landing pages, and eCommerce platforms using HTML, CSS, JavaScript, React, and WordPress.</p>
+    <img src="https://source.unsplash.com/featured/?webdesign" alt="Website Development">
+    <p>Custom websites, landing pages, and eCommerce platforms using HTML, CSS, JavaScript, React, and WordPress. Tailored to your brand’s goals and audience.</p>
   </div>
 
   <div class="section">
     <h2>Backend Development</h2>
-    <p>Robust APIs, automation scripts, and server-side logic built with Python, Flask, Node.js, and Django.</p>
+    <img src="https://source.unsplash.com/featured/?backend,code" alt="Backend Development">
+    <p>Powerful server-side logic and scalable APIs built using Python, Flask, Node.js, and Django to support your application or platform securely.</p>
   </div>
 
   <div class="section">
     <h2>AI & Automation</h2>
-    <p>Integrate OpenAI, automate business tasks, generate reports, and build intelligent chatbots and tools.</p>
+    <img src="https://source.unsplash.com/featured/?ai,robot" alt="AI & Automation">
+    <p>Automate business tasks, integrate GPT-based intelligence, and build smart bots or assistants that enhance customer service and productivity.</p>
   </div>
 
   <div class="section">
     <h2>Data & Analytics</h2>
-    <p>Data scraping, cleaning, analysis, and visual dashboards using Python, Pandas, Matplotlib, and Excel.</p>
+    <img src="https://source.unsplash.com/featured/?data,analytics" alt="Data & Analytics">
+    <p>Transform raw data into insights. From scraping and cleaning to dashboards and reports using Python, Pandas, Matplotlib, Excel, and more.</p>
   </div>
 
   <div class="section">
     <h2>Technical Consulting</h2>
-    <p>IT project planning, tool recommendations, digital upgrades, and long-term strategy development.</p>
+    <img src="https://source.unsplash.com/featured/?consulting,tech" alt="Consulting">
+    <p>We guide businesses through digital change with strategic planning, tools setup, infrastructure design, and project architecture consulting.</p>
   </div>
 
   <footer>
-    &copy; 2025 Anand IT Solutions. All rights reserved.
+    &copy; 2025 <span class="editable-company">Anand IT Solutions</span>. All rights reserved.
   </footer>
 </body>
 </html>
