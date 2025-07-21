@@ -169,25 +169,80 @@
     <div class="logo editable-company" contenteditable="true">Anand IT Solutions</div>
     <div class="hamburger" onclick="toggleMenu()">☰</div>
     <ul>
-      <li><a href="contact.html">✉️ Contact</a></li>
-      <li><a href="about.html">ℹ️ About</a></li>
-      <li><a href="blog.html">📖 Blog</a></li>
+      <li><a href="contact.html">📬 Get in Touch</a></li>
+      <li><a href="about.html">🧭 Our Journey</a></li>
+      <li><a href="blog.html">🧠 Insights</a></li>
     </ul>
   </nav>
 
-  <header>
-    <h1 contenteditable="true" class="editable-company">Anand IT Solutions</h1>
-    <p>We engineer digital transformation for a smarter tomorrow.</p>
-  </header>
+  <header style="background: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c') no-repeat center center / cover; color: white; padding: 5rem 1rem; text-align: center;">
+  <h1 contenteditable="true" class="editable-company" style="font-size: 3.5rem; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.6);">Anand IT Solutions</h1>
+  <p style="font-size: 1.5rem; text-shadow: 1px 1px 3px rgba(0,0,0,0.5);">Crafting Scalable, Intelligent, and Beautiful Digital Experiences</p>
+</header>
 
-  <div class="section" style="background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d') no-repeat center center / cover;">
-  <h2>What We Offer</h2>
-  <p>We provide full-service IT solutions — from beautiful websites and secure backend systems to smart AI tools and business consulting. Let us help you build the future.</p>
+  <div class="section" style="background: url('https://images.unsplash.com/photo-1581090700227-1e8e939f01d0') no-repeat center center / cover;">
+  <h2>Custom Software Development</h2>
+  <p>We build powerful, scalable software tailored to your business — from enterprise tools to innovative startups.</p>
 </div>
 
-  <footer>
+<div class="section" style="background: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085') no-repeat center center / cover;">
+  <h2>Web & Mobile Solutions</h2>
+  <p>Engage your audience with cutting-edge websites and responsive mobile apps built for performance and beauty.</p>
+</div>
+
+<div class="section" style="background: url('https://images.unsplash.com/photo-1605902711622-cfb43c4437d1') no-repeat center center / cover;">
+  <h2>AI & Automation</h2>
+  <p>Use the power of AI to automate tasks, gain insights, and supercharge decision-making with intelligent solutions.</p>
+</div>
+
+<div class="section" style="background: url('https://images.unsplash.com/photo-1535223289827-42f1e9919769') no-repeat center center / cover;">
+  <h2>Cybersecurity Solutions</h2>
+  <p>Protect your digital infrastructure with our advanced threat detection, compliance services, and endpoint protection strategies.</p>
+</div>
+
+<div class="section" style="background: url('https://images.unsplash.com/photo-1573164713988-8665fc963095') no-repeat center center / cover;">
+  <h2>DevOps & Infrastructure</h2>
+  <p>Automate deployments, streamline CI/CD pipelines, and improve reliability with our end-to-end DevOps and infrastructure support.</p>
+</div>
+
+<div class="section" style="background: url('https://images.unsplash.com/photo-1591696205602-2f950c417cb9') no-repeat center center / cover;">
+  <h2>UI/UX Design Services</h2>
+  <p>Deliver delightful user experiences through intuitive design, prototyping, and usability testing for web and mobile apps.</p>
+</div>
+
+<footer>
     &copy; 2025 <span class="editable-company">Anand IT Solutions</span>. All rights reserved.
   </footer>
+
+<div class="section" style="background: url('https://images.unsplash.com/photo-1605902711622-cfb43c4437d1') no-repeat center center / cover;">
+  <h2>📅 Book a Demo</h2>
+  <p>Select a convenient time to see our solutions in action.</p>
+  <form style="background-color: rgba(255,255,255,0.9); padding: 1rem; border-radius: 10px;">
+    <label for="demo-date">Choose a date:</label><br>
+    <input type="date" id="demo-date" name="demo-date" required><br><br>
+
+    <label for="demo-time">Choose a time slot:</label><br>
+    <select id="demo-time" name="demo-time" required>
+      <option value="">--Select--</option>
+      <option>10:00 AM - 11:00 AM</option>
+      <option>1:00 PM - 2:00 PM</option>
+      <option>4:00 PM - 5:00 PM</option>
+    </select><br><br>
+
+    <label for="email">Your Email:</label><br>
+    <input type="email" id="email" name="email" placeholder="you@example.com" required><br><br>
+
+    <button type="submit" onclick="redirectToPayment(event)" style="padding: 0.7rem 1.5rem; background: #0070f3; color: white; border: none; border-radius: 5px; cursor: pointer;">Book & Pay</button>
+  </form>
+</div>
+
+<script>
+  function redirectToPayment(e) {
+    e.preventDefault();
+    alert('Redirecting to payment...');
+    window.location.href = 'https://applepay.apple.com'; // Placeholder for real Apple Pay or Stripe checkout
+  }
+</script>
 <script>
     function toggleMenu() {
       const navList = document.querySelector('nav ul');
