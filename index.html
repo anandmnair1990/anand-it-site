@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Anand IT Solutions</title>
+  <link rel="stylesheet" href="style.css" />
   <style>
     body {
       margin: 0;
@@ -11,10 +12,37 @@
       background-color: #f4f4f4;
       color: #333;
     }
+    nav {
+      background-color: #003344;
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      align-items: center;
+    }
+    nav .logo {
+      font-size: 1.5rem;
+      color: white;
+      font-weight: bold;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    nav ul li a:hover {
+      text-decoration: underline;
+    }
     header {
       background-color: #004466;
       color: white;
-      padding: 2rem 1rem;
+      padding: 3rem 1rem;
       text-align: center;
     }
     header h1 {
@@ -60,75 +88,50 @@
   </style>
 </head>
 <body>
+  <nav>
+    <div class="logo editable-company" contenteditable="true">Anand IT Solutions</div>
+    <ul>
+      <li><a href="#web">Web</a></li>
+      <li><a href="#backend">Backend</a></li>
+      <li><a href="#ai">AI</a></li>
+      <li><a href="#data">Data</a></li>
+      <li><a href="#consulting">Consulting</a></li>
+    </ul>
+  </nav>
+
   <header>
     <h1 contenteditable="true" class="editable-company">Anand IT Solutions</h1>
     <p>We engineer digital transformation for a smarter tomorrow.</p>
   </header>
 
-  <div class="section">
+  <div class="section" id="web">
     <h2>Website Development</h2>
     <img src="https://source.unsplash.com/featured/?webdesign" alt="Website Development">
     <p>Custom websites, landing pages, and eCommerce platforms using HTML, CSS, JavaScript, React, and WordPress. Tailored to your brand’s goals and audience.</p>
   </div>
 
-  <div class="section">
+  <div class="section" id="backend">
     <h2>Backend Development</h2>
     <img src="https://source.unsplash.com/featured/?backend,code" alt="Backend Development">
     <p>Powerful server-side logic and scalable APIs built using Python, Flask, Node.js, and Django to support your application or platform securely.</p>
   </div>
 
-  <div class="section">
+  <div class="section" id="ai">
     <h2>AI & Automation</h2>
     <img src="https://source.unsplash.com/featured/?ai,robot" alt="AI & Automation">
     <p>Automate business tasks, integrate GPT-based intelligence, and build smart bots or assistants that enhance customer service and productivity.</p>
   </div>
 
-  <div class="section">
+  <div class="section" id="data">
     <h2>Data & Analytics</h2>
     <img src="https://source.unsplash.com/featured/?data,analytics" alt="Data & Analytics">
     <p>Transform raw data into insights. From scraping and cleaning to dashboards and reports using Python, Pandas, Matplotlib, Excel, and more.</p>
   </div>
 
-  <div class="section">
+  <div class="section" id="consulting">
     <h2>Technical Consulting</h2>
     <img src="https://source.unsplash.com/featured/?consulting,tech" alt="Consulting">
     <p>We guide businesses through digital change with strategic planning, tools setup, infrastructure design, and project architecture consulting.</p>
-  </div>
-
-  <div class="section">
-    <h2>Custom Software Development</h2>
-    <img src="https://source.unsplash.com/featured/?software,development" alt="Custom Software">
-    <p>Tailored, secure, scalable software built from the ground up to match your business needs — from web and mobile apps to enterprise platforms.</p>
-  </div>
-
-  <div class="section">
-    <h2>AI / Machine Learning & GenAI</h2>
-    <img src="https://source.unsplash.com/featured/?ai,ml" alt="AI ML">
-    <p>Integrate intelligent solutions: predictive analytics, chatbots, and AI-powered automation tailored to your data and customers.</p>
-  </div>
-
-  <div class="section">
-    <h2>API & System Integration</h2>
-    <img src="https://source.unsplash.com/featured/?api,integration" alt="API Integration">
-    <p>Seamless integrations between your systems, third‑party tools and CRM platforms via robust, scalable custom APIs.</p>
-  </div>
-
-  <div class="section">
-    <h2>Legacy Modernization</h2>
-    <img src="https://source.unsplash.com/featured/?modernization,legacy" alt="Legacy Modernization">
-    <p>Upgrade outdated legacy systems into modern, efficient platforms that reduce cost, risk and maintenance overhead.</p>
-  </div>
-
-  <div class="section">
-    <h2>Containerization & DevOps</h2>
-    <img src="https://source.unsplash.com/featured/?devops,containerization" alt="DevOps">
-    <p>Automate deployment and delivery with Docker/Kubernetes, CI/CD pipelines, cloud architectures, and scalable DevOps practices.</p>
-  </div>
-
-  <div class="section">
-    <h2>Discovery & Consulting</h2>
-    <img src="https://source.unsplash.com/featured/?consulting,planning" alt="Discovery Consulting">
-    <p>Start with a Discovery phase—detailed analysis, scope definition, stakeholder workshops, and solution planning to ensure project success.</p>
   </div>
 
   <footer>
