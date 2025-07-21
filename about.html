@@ -5,37 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>About Us - Anand IT Solutions</title>
   <style>
-    body { font-family: Arial; margin: 0; padding: 0; background: #fafafa; color: #333; }
-    .container { max-width: 1000px; margin: auto; padding: 2rem; }
-    h1 { color: #004466; }
-    .portfolio { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
-    .card { background: white; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); padding: 1rem; }
-    .card img { width: 100%; border-radius: 6px; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url('https://images.unsplash.com/photo-1532074205216-d0e1f4b87368') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+    .content {
+      max-width: 800px;
+      margin: 4rem auto;
+      background: rgba(0,0,0,0.6);
+      padding: 2rem;
+      border-radius: 12px;
+      animation: fadeIn 1s ease-in-out;
+    }
+    h1 {
+      text-align: center;
+    }
+    p {
+      font-size: 1.2rem;
+      line-height: 1.7;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>About Our Company</h1>
-    <p>We are a dedicated team providing top-notch IT solutions including web development, backend engineering, AI/ML automation, and consulting services.</p>
-
-    <h2>Our Portfolio</h2>
-    <div class="portfolio">
-      <div class="card">
-        <img src="https://source.unsplash.com/featured/?webapp" alt="Project 1">
-        <h3>WebApp Platform</h3>
-        <p>Modern web platform for online bookings</p>
-      </div>
-      <div class="card">
-        <img src="https://source.unsplash.com/featured/?dashboard" alt="Project 2">
-        <h3>Analytics Dashboard</h3>
-        <p>Data visualization system with Python backend</p>
-      </div>
-      <div class="card">
-        <img src="https://source.unsplash.com/featured/?ai,bot" alt="Project 3">
-        <h3>AI Chat Assistant</h3>
-        <p>Custom GPT-powered bot for client service</p>
-      </div>
-    </div>
+  <div class="content">
+    <h1>About Us</h1>
+    <p>We are a passionate team delivering modern IT services. With a focus on innovation and problem-solving, we help businesses grow through custom software, automation, and smart digital solutions.</p>
+    <p>Founded by Anand, we specialize in web development, backend systems, AI integration, data tools, and consulting for scalable, secure, and intelligent platforms.</p>
   </div>
 </body>
 </html>

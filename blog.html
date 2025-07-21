@@ -3,36 +3,52 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Blog & Careers - Anand IT Solutions</title>
+  <title>Blog - Anand IT Solutions</title>
   <style>
-    body { font-family: Arial; background: #fff; color: #222; padding: 2rem; }
-    h1, h2 { color: #004466; }
-    .blog-post, .career-item { margin-bottom: 2rem; border-bottom: 1px solid #ddd; padding-bottom: 1rem; }
-    .career-item h3 { margin: 0; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url('https://images.unsplash.com/photo-1557804506-669a67965ba0') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+    .blog {
+      max-width: 800px;
+      margin: 4rem auto;
+      background: rgba(0,0,0,0.6);
+      padding: 2rem;
+      border-radius: 10px;
+      animation: fadeIn 1s ease-in-out;
+    }
+    h1 {
+      text-align: center;
+    }
+    article {
+      margin-bottom: 2rem;
+    }
+    h2 {
+      margin-bottom: 0.5rem;
+    }
+    p {
+      font-size: 1.1rem;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
   </style>
 </head>
 <body>
-  <h1>Company Blog</h1>
-
-  <div class="blog-post">
-    <h2>Building Scalable Web Apps in 2025</h2>
-    <p>Explore our latest methods using JAMstack, microservices, and cloud-native patterns.</p>
-  </div>
-
-  <div class="blog-post">
-    <h2>How AI is Transforming Client Support</h2>
-    <p>We’ve integrated smart GPT assistants for real-time ticket handling. Here’s how it went.</p>
-  </div>
-
-  <h1>Join Our Team</h1>
-  <div class="career-item">
-    <h3>Frontend Developer</h3>
-    <p>HTML, CSS, React. 2+ years experience. Remote OK.</p>
-  </div>
-
-  <div class="career-item">
-    <h3>Python Automation Engineer</h3>
-    <p>Work on backend scripting, scraping, and bots. Flexible location.</p>
+  <div class="blog">
+    <h1>Our Blog</h1>
+    <article>
+      <h2>Why Every Business Needs Automation</h2>
+      <p>Automation helps cut costs, increase speed, and deliver better customer experiences...</p>
+    </article>
+    <article>
+      <h2>Top 5 Tools for Web Development in 2025</h2>
+      <p>Explore the latest frameworks and tools that make modern development easier and faster...</p>
+    </article>
   </div>
 </body>
 </html>

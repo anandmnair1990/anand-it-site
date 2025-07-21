@@ -2,30 +2,65 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contact Us - Anand IT Solutions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact - Anand IT Solutions</title>
   <style>
-    body { font-family: Arial; padding: 2rem; background: #f4f4f4; color: #333; }
-    h1 { color: #004466; }
-    form { max-width: 600px; margin: auto; background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-    label { display: block; margin: 1rem 0 0.2rem; }
-    input, textarea { width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; }
-    button { margin-top: 1rem; padding: 0.5rem 1rem; background: #004466; color: white; border: none; border-radius: 4px; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url('https://images.unsplash.com/photo-1556740749-887f6717d7e4') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+    .container {
+      max-width: 600px;
+      margin: 4rem auto;
+      background: rgba(0,0,0,0.6);
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      animation: fadeIn 1s ease-in-out;
+    }
+    h1 {
+      text-align: center;
+    }
+    label, input, textarea {
+      display: block;
+      width: 100%;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    input, textarea {
+      padding: 0.5rem;
+      border: none;
+      border-radius: 5px;
+    }
+    button {
+      padding: 0.6rem 1.2rem;
+      background: #00aaff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
   </style>
 </head>
 <body>
-  <h1>Contact Us</h1>
-  <form action="#" method="post">
-    <label for="name">Your Name:</label>
-    <input type="text" id="name" required />
-
-    <label for="email">Email Address:</label>
-    <input type="email" id="email" required />
-
-    <label for="message">Message:</label>
-    <textarea id="message" rows="5" required></textarea>
-
-    <button type="submit">Send Message</button>
-  </form>
+  <div class="container">
+    <h1>Contact Us</h1>
+    <form>
+      <label>Name:</label>
+      <input type="text" placeholder="Your name" />
+      <label>Email:</label>
+      <input type="email" placeholder="Your email" />
+      <label>Message:</label>
+      <textarea rows="5" placeholder="Your message"></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </div>
 </body>
 </html>
