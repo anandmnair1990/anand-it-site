@@ -172,7 +172,18 @@
     }
   </style>
 </head>
-<body>
+
+  <script>
+    if (document.referrer && !location.href.includes('index.html')) {
+      document.addEventListener('DOMContentLoaded', function() {
+        const backBtn = document.createElement('a');
+        backBtn.href = 'index.html';
+        backBtn.textContent = '← Back to Home';
+        backBtn.style.cssText = 'position:fixed;top:10px;left:10px;background:#004466;color:white;padding:10px 15px;border-radius:5px;text-decoration:none;z-index:10000;font-weight:bold;';
+        document.body.appendChild(backBtn);
+      });
+    }
+  </script>
   <nav>
     <div class="logo editable-company" contenteditable="true">Anand IT Solutions</div>
     <div class="hamburger" onclick="toggleMenu()">☰</div>
