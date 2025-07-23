@@ -1,75 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🧠 Insights – Anand IT Solutions</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Insights - Vionyx</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: url('https://images.unsplash.com/photo-1559027615-cdcbf0b5b6f5') no-repeat center center / cover;
-      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=compress&cs=tinysrgb&dpr=2&h=1600&w=2400') no-repeat center center / cover;
+      color: #ffffff;
       overflow-x: hidden;
     }
     nav {
-      background-color: rgba(0, 51, 68, 0.9);
+      background-color: rgba(0, 0, 0, 0.85);
       display: flex;
       justify-content: space-between;
       padding: 1rem 2rem;
       align-items: center;
     }
     nav .logo {
-      font-size: 1.5rem;
-      color: white;
-      font-weight: bold;
+      font-size: 1.8rem;
+      color: #00f6ff;
+      font-weight: 700;
     }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1rem;
-      margin: 0;
-      padding: 0;
-    }
-    nav ul li a {
+    nav a {
       color: white;
       text-decoration: none;
-      font-weight: 500;
+      font-size: 1rem;
+      transition: color 0.3s ease;
     }
-    .section {
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 3rem 2rem;
-      max-width: 800px;
-      margin: 4rem auto;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    nav a:hover {
+      color: #00f6ff;
+    }
+    .hero {
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 5rem 2rem;
       text-align: center;
+      backdrop-filter: blur(3px);
     }
-    .section h2 {
-      font-size: 2.5rem;
+    .hero h1 {
+      font-size: 3rem;
       margin-bottom: 1rem;
     }
-    .section p {
-      font-size: 1.1rem;
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .content {
+      padding: 3rem 2rem;
+      background-color: rgba(0,0,0,0.6);
+      max-width: 900px;
+      margin: 2rem auto;
+      border-radius: 12px;
+      backdrop-filter: blur(2px);
+    }
+    .content h2 {
+      font-size: 2rem;
+      color: #00f6ff;
+      margin-bottom: 1rem;
+    }
+    .content p {
+      font-size: 1rem;
       line-height: 1.6;
+      color: #f0faff;
+    }
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      background-color: rgba(0, 0, 0, 0.9);
+      color: #cfd8dc;
+      font-size: 0.9rem;
     }
   </style>
 </head>
 <body>
   <nav>
-    <div class="logo">Anand IT Solutions</div>
-    <ul>
-      <li><a href="index.html">🏠 Home</a></li>
-      <li><a href="contact.html">📬 Get in Touch</a></li>
-      <li><a href="about.html">🧭 Our Journey</a></li>
-      <li><a href="blog.html">🧠 Insights</a></li>
-    </ul>
+    <div class="logo">Vionyx</div>
+    <a href="index.html">← Back to Home</a>
   </nav>
 
-  <div class="section">
-    <h2>🧠 Insights</h2>
-    <p>Explore thoughts, innovations, case studies, and industry news from the minds at Anand IT Solutions. Stay informed and inspired by the evolving landscape of technology and business transformation.</p>
+  <div class="hero">
+    <h1>Insights & Ideas</h1>
+    <p>Explore technology trends, development tips, and expert perspectives from the Vionyx team.</p>
+  </div>
+
+  <div class="content">
+    <h2>Latest Articles</h2>
+    <p><strong>🔍 Building Smarter Systems:</strong> Learn how automation and AI can streamline your business operations.</p>
+
+    <p><strong>🧠 User-Centric Design:</strong> Discover how UI/UX practices enhance customer satisfaction and retention.</p>
+
+    <p><strong>🔐 Security-First Thinking:</strong> Get insights into modern cybersecurity threats and how to protect against them.</p>
+
+    <p><strong>🚀 Scaling Infrastructure:</strong> Understand DevOps practices that support reliable scaling and rapid deployment.</p>
+  </div>
+
+  <div class="footer">
+    © 2025 Vionyx. All rights reserved.
   </div>
 </body>
 </html>
