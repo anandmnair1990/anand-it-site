@@ -37,7 +37,7 @@
     }
     .hero {
       text-align: center;
-      padding: 5rem 2rem;
+      padding: 5rem 2rem 2rem;
       background-color: rgba(0, 0, 0, 0.5);
     }
     .hero h1 {
@@ -46,6 +46,38 @@
     .hero p {
       font-size: 1.2rem;
       color: #e0f7fa;
+    }
+    .contact-form {
+      max-width: 600px;
+      margin: 2rem auto;
+      background-color: rgba(0,0,0,0.6);
+      padding: 2rem;
+      border-radius: 12px;
+      backdrop-filter: blur(4px);
+    }
+    .contact-form label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+    .contact-form input[type="submit"] {
+      background-color: #00f6ff;
+      color: #000;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+    .contact-form input[type="submit"]:hover {
+      background-color: #00cfd1;
     }
     .footer {
       background: rgba(0, 0, 0, 0.9);
@@ -70,6 +102,24 @@
   <div class="hero">
     <h1>Contact Us</h1>
     <p>We’d love to hear from you! Reach out for project inquiries, partnerships, or just to say hi.</p>
+  </div>
+
+  <div class="contact-form">
+    <form action="https://formspree.io/f/your-form-id" method="POST">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" placeholder="Your Name" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="you@example.com" required>
+
+      <label for="subject">Subject</label>
+      <input type="text" id="subject" name="subject" placeholder="Project / Feedback / Query" required>
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="6" placeholder="Write your message..." required></textarea>
+
+      <input type="submit" value="Submit Enquiry">
+    </form>
   </div>
 
   <div class="footer">
