@@ -1,53 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome to Vionyx</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vionyx | IT Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085') no-repeat center center / cover;
-      color: #fff;
-      overflow-x: hidden;
+      font-family: 'Inter', sans-serif;
+      background: url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=compress&cs=tinysrgb&dpr=2&h=1800&w=2400') no-repeat center center / cover;
+      color: #ffffff;
     }
+
     nav {
-      background-color: rgba(0, 51, 68, 0.9);
+      background-color: rgba(0, 0, 0, 0.85);
       display: flex;
       justify-content: space-between;
-      padding: 1rem 2rem;
       align-items: center;
+      padding: 1rem 2rem;
     }
+
     nav .logo {
-      font-size: 1.5rem;
-      color: white;
-      font-weight: bold;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #00e0ff;
     }
+
     nav ul {
       list-style: none;
       display: flex;
-      gap: 1rem;
-      margin: 0;
+      gap: 1.5rem;
       padding: 0;
+      margin: 0;
     }
+
     nav ul li a {
-      color: white;
       text-decoration: none;
+      color: #ffffff;
       font-weight: 500;
+      font-size: 1.05rem;
+      transition: color 0.3s ease;
     }
+
+    nav ul li a:hover {
+      color: #00e0ff;
+    }
+
     .hero {
+      padding: 6rem 2rem;
       background-color: rgba(0, 0, 0, 0.5);
-      padding: 4rem 2rem;
       text-align: center;
+      backdrop-filter: blur(3px);
     }
+
     .hero h1 {
-      font-size: 3rem;
+      font-size: 3.5rem;
       margin-bottom: 1rem;
     }
+
     .hero p {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .footer {
+      padding: 1.5rem;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.85);
+      color: #ccc;
+      font-size: 0.95rem;
     }
   </style>
 </head>
@@ -55,16 +78,20 @@
   <nav>
     <div class="logo">Vionyx</div>
     <ul>
-      <li><a href="index.html">🏠 Home</a></li>
-      <li><a href="contact.html">📬 Get in Touch</a></li>
-      <li><a href="about.html">🧭 Our Journey</a></li>
-      <li><a href="blog.html">🧠 Insights</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="blog.html">Blog</a></li>
     </ul>
   </nav>
 
   <div class="hero">
-    <h1>Welcome to Vionyx</h1>
-    <p>Empowering your digital future with expert IT solutions and innovation.</p>
+    <h1>Vionyx</h1>
+    <p>Empowering your digital future with world-class IT solutions and intelligent automation.</p>
+  </div>
+
+  <div class="footer">
+    © 2025 Vionyx. All rights reserved.
   </div>
 </body>
 </html>
