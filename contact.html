@@ -3,88 +3,93 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Vionyx | Contact</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <title>Contact Us | Vionyx</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
   <style>
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: url('https://images.unsplash.com/photo-1506765515384-028b60a970df') no-repeat center center/cover;
+      background: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=compress&cs=tinysrgb&dpr=2&h=1500&w=2400') no-repeat center center / cover;
       color: #fff;
+      overflow-x: hidden;
     }
     nav {
-      background: rgba(0, 0, 0, 0.85);
-      padding: 1rem 2rem;
+      background-color: rgba(0, 0, 0, 0.85);
       display: flex;
       justify-content: space-between;
+      padding: 1rem 2rem;
       align-items: center;
     }
     nav .logo {
       font-size: 1.8rem;
-      font-weight: 700;
       color: #00f6ff;
+      font-weight: bold;
     }
     nav ul {
       list-style: none;
       display: flex;
       gap: 1.5rem;
       margin: 0;
+      padding: 0;
     }
     nav ul li a {
-      color: white;
+      color: #fff;
       text-decoration: none;
       font-weight: 500;
+    }
+    nav ul li a:hover {
+      color: #00f6ff;
     }
     .hero {
       text-align: center;
       padding: 5rem 2rem 2rem;
-      background-color: rgba(0, 0, 0, 0.5);
+      background-color: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(3px);
     }
     .hero h1 {
       font-size: 3rem;
+      color: #fff;
     }
-    .hero p {
-      font-size: 1.2rem;
-      color: #e0f7fa;
-    }
-    .contact-form {
+    .form-container {
       max-width: 600px;
       margin: 2rem auto;
-      background-color: rgba(0,0,0,0.6);
       padding: 2rem;
+      background-color: rgba(0, 0, 0, 0.6);
       border-radius: 12px;
-      backdrop-filter: blur(4px);
     }
-    .contact-form label {
+    .form-container label {
       display: block;
       margin-bottom: 0.5rem;
       font-weight: 600;
     }
-    .contact-form input,
-    .contact-form textarea {
+    .form-container input,
+    .form-container textarea {
       width: 100%;
-      padding: 0.8rem;
+      padding: 0.75rem;
       margin-bottom: 1.5rem;
+      border-radius: 8px;
+      border: none;
+      font-size: 1rem;
+    }
+    .form-container button {
+      padding: 0.75rem 1.5rem;
+      background-color: #00f6ff;
       border: none;
       border-radius: 8px;
-      font-size: 1rem;
-    }
-    .contact-form input[type="submit"] {
-      background-color: #00f6ff;
-      color: #000;
+      font-size: 1.1rem;
       cursor: pointer;
+      color: #000;
       font-weight: bold;
-      transition: background 0.3s ease;
     }
-    .contact-form input[type="submit"]:hover {
-      background-color: #00cfd1;
+    .form-container button:hover {
+      background-color: #00cce6;
     }
     .footer {
-      background: rgba(0, 0, 0, 0.9);
-      padding: 1rem;
       text-align: center;
+      padding: 2rem;
       font-size: 1rem;
-      color: #bbb;
+      background-color: rgba(0, 0, 0, 0.85);
+      color: #ccc;
     }
   </style>
 </head>
@@ -93,32 +98,29 @@
     <div class="logo">Vionyx</div>
     <ul>
       <li><a href="index.html">Home</a></li>
-      <li><a href="contact.html">Get in Touch</a></li>
       <li><a href="about.html">Our Journey</a></li>
       <li><a href="blog.html">Insights</a></li>
     </ul>
   </nav>
 
   <div class="hero">
-    <h1>Contact Us</h1>
-    <p>We’d love to hear from you! Reach out for project inquiries, partnerships, or just to say hi.</p>
+    <h1>Get in Touch</h1>
   </div>
 
-  <div class="contact-form">
-    <form action="https://formspree.io/f/your-form-id" method="POST">
-      <label for="name">Name</label>
-      <input type="text" id="name" name="name" placeholder="Your Name" required>
+  <div class="form-container">
+    <form action="https://formspree.io/f/xldljvrl" method="POST">
+      <input type="hidden" name="_redirect" value="https://anandmnair1990.github.io/anand-it-site/thank-you.html" />
+      
+      <label for="name">Your Name</label>
+      <input type="text" id="name" name="name" required />
 
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" placeholder="you@example.com" required>
+      <label for="email">Your Email</label>
+      <input type="email" id="email" name="email" required />
 
-      <label for="subject">Subject</label>
-      <input type="text" id="subject" name="subject" placeholder="Project / Feedback / Query" required>
+      <label for="message">Your Message</label>
+      <textarea id="message" name="message" rows="6" required></textarea>
 
-      <label for="message">Message</label>
-      <textarea id="message" name="message" rows="6" placeholder="Write your message..." required></textarea>
-
-      <input type="submit" value="Submit Enquiry">
+      <button type="submit">Send Message</button>
     </form>
   </div>
 
