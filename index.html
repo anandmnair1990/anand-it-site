@@ -3,26 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Vionyx - Expert IT Services</title>
+  <title>Vionyx - Empowering Digital Innovation</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: url('https://images.unsplash.com/photo-1531497865144-0464ef8fbf17?auto=compress&cs=tinysrgb&dpr=2&h=1800&w=2400') no-repeat center center / cover;
-      color: #fff;
+      background: url('https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=compress&cs=tinysrgb&dpr=2&h=1600&w=2400') no-repeat center center / cover;
+      color: #ffffff;
+      overflow-x: hidden;
     }
     nav {
       background-color: rgba(0, 0, 0, 0.85);
       display: flex;
       justify-content: space-between;
-      align-items: center;
       padding: 1rem 2rem;
+      align-items: center;
     }
     nav .logo {
-      font-size: 1.8rem;
-      font-weight: 700;
+      font-size: 2rem;
       color: #00f6ff;
+      font-weight: 700;
     }
     nav ul {
       list-style: none;
@@ -35,14 +36,16 @@
       color: #fff;
       text-decoration: none;
       font-weight: 500;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
     }
     nav ul li a:hover {
       color: #00f6ff;
     }
     .hero {
-      text-align: center;
-      padding: 5rem 2rem;
       background-color: rgba(0, 0, 0, 0.5);
+      padding: 6rem 2rem;
+      text-align: center;
     }
     .hero h1 {
       font-size: 3.5rem;
@@ -50,45 +53,46 @@
     }
     .hero p {
       font-size: 1.3rem;
-      max-width: 700px;
+      color: #d8f7ff;
+      max-width: 800px;
       margin: 0 auto;
     }
     .services {
       padding: 4rem 2rem;
-      background-color: rgba(255, 255, 255, 0.05);
+      background-color: rgba(0, 0, 0, 0.7);
     }
     .services h2 {
       text-align: center;
       font-size: 2.5rem;
       color: #00f6ff;
-      margin-bottom: 2rem;
+      margin-bottom: 3rem;
     }
     .service {
+      background-color: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      padding: 2rem;
+      margin: 2rem auto;
       max-width: 900px;
-      margin: 1.5rem auto;
-      background: rgba(0, 0, 0, 0.6);
-      padding: 1.5rem;
-      border-radius: 12px;
+      transition: transform 0.3s ease;
+    }
+    .service:hover {
+      transform: scale(1.02);
     }
     .service h3 a {
       color: #00f6ff;
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       text-decoration: none;
     }
-    .service h3 a:hover {
-      text-decoration: underline;
-    }
     .service p {
-      font-size: 1rem;
-      color: #e0f7fa;
-      margin-top: 0.5rem;
+      font-size: 1.1rem;
+      color: #f1f9fc;
     }
     .footer {
       text-align: center;
       padding: 2rem;
-      font-size: 0.9rem;
-      background-color: rgba(0, 0, 0, 0.85);
-      color: #bbb;
+      font-size: 1rem;
+      background-color: rgba(0, 0, 0, 0.9);
+      color: #cfd8dc;
     }
   </style>
 </head>
@@ -97,15 +101,15 @@
     <div class="logo">Vionyx</div>
     <ul>
       <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Get in Touch</a></li>
+      <li><a href="about.html">Our Journey</a></li>
+      <li><a href="blog.html">Insights</a></li>
     </ul>
   </nav>
 
   <div class="hero">
-    <h1>Empowering Digital Innovation</h1>
-    <p>Vionyx delivers expert IT solutions tailored to your business—from automation to cybersecurity, we've got you covered.</p>
+    <h1>Vionyx</h1>
+    <p>Empowering your digital future with cutting-edge software, infrastructure, and AI-driven solutions.</p>
   </div>
 
   <section class="services">
@@ -113,32 +117,32 @@
 
     <div class="service">
       <h3><a href="custom-software.html">Custom Software Development</a></h3>
-      <p>We build scalable, secure software tailored to your business needs—from enterprise tools to innovative startups.</p>
+      <p>We build powerful, scalable software tailored to your business — from enterprise tools to innovative startups.</p>
     </div>
 
     <div class="service">
       <h3><a href="web-mobile.html">Web & Mobile Solutions</a></h3>
-      <p>Engage your audience with responsive websites and mobile apps optimized for speed and design.</p>
+      <p>Engage your audience with cutting-edge websites and responsive mobile apps built for performance and beauty.</p>
     </div>
 
     <div class="service">
       <h3><a href="ai-and-automation.html">AI & Automation</a></h3>
-      <p>Automate operations, enhance insights, and empower decisions with cutting-edge AI technologies.</p>
+      <p>Use the power of AI to automate tasks, gain insights, and supercharge decision-making with intelligent solutions.</p>
     </div>
 
     <div class="service">
       <h3><a href="cybersecurity-solutions.html">Cybersecurity Solutions</a></h3>
-      <p>Protect your digital assets with advanced threat detection, risk mitigation, and compliance services.</p>
+      <p>Protect your digital infrastructure with our advanced threat detection, compliance services, and endpoint protection strategies.</p>
     </div>
 
     <div class="service">
       <h3><a href="devops-infrastructure.html">DevOps & Infrastructure</a></h3>
-      <p>Streamline delivery pipelines, automate deployments, and scale your infrastructure with confidence.</p>
+      <p>Automate deployments, streamline CI/CD pipelines, and improve reliability with our end-to-end DevOps and infrastructure support.</p>
     </div>
 
     <div class="service">
       <h3><a href="ui-ux.html">UI/UX Design Services</a></h3>
-      <p>Create engaging digital experiences with human-centered design, prototyping, and user testing.</p>
+      <p>Deliver delightful user experiences through intuitive design, prototyping, and usability testing for web and mobile apps.</p>
     </div>
   </section>
 
