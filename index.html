@@ -3,27 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Vionyx – Innovative IT Solutions</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <title>Vionyx - Expert IT Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
   <style>
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: url('https://images.unsplash.com/photo-1605810230434-7631f2fcf7a6?auto=compress&cs=tinysrgb&dpr=2&h=1400&w=2400') no-repeat center center/cover;
+      background: url('https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=compress&cs=tinysrgb&dpr=2&h=2000&w=2800') no-repeat center center/cover;
       color: #fff;
+      overflow-x: hidden;
     }
+
     nav {
       background-color: rgba(0, 0, 0, 0.85);
       display: flex;
       justify-content: space-between;
-      align-items: center;
       padding: 1rem 2rem;
+      align-items: center;
     }
+
     nav .logo {
       font-size: 2rem;
       font-weight: bold;
       color: #00f6ff;
+      letter-spacing: 1px;
     }
+
     nav ul {
       list-style: none;
       display: flex;
@@ -31,81 +36,84 @@
       margin: 0;
       padding: 0;
     }
+
     nav ul li a {
-      text-decoration: none;
       color: #ffffff;
+      text-decoration: none;
       font-weight: 500;
-      transition: color 0.3s ease;
+      font-size: 1rem;
     }
+
     nav ul li a:hover {
       color: #00f6ff;
     }
 
     .hero {
-      background-color: rgba(0, 0, 0, 0.55);
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 6rem 2rem;
       text-align: center;
-      padding: 6rem 2rem 4rem;
+      backdrop-filter: blur(2px);
     }
+
     .hero h1 {
-      font-size: 3.5rem;
+      font-size: 3rem;
       margin-bottom: 1rem;
       color: #ffffff;
     }
+
     .hero p {
-      font-size: 1.3rem;
-      max-width: 800px;
+      font-size: 1.2rem;
+      max-width: 700px;
       margin: 0 auto;
-      color: #d0faff;
+      color: #e6faff;
     }
 
     .services {
-      background: rgba(0, 0, 0, 0.7);
       padding: 4rem 2rem;
+      background-color: rgba(0, 0, 0, 0.6);
     }
+
     .services h2 {
       text-align: center;
+      margin-bottom: 2.5rem;
       font-size: 2.5rem;
-      margin-bottom: 3rem;
       color: #00f6ff;
     }
+
     .service {
       background: rgba(255, 255, 255, 0.05);
-      border-radius: 10px;
-      padding: 2rem;
+      border-radius: 12px;
+      padding: 1.5rem;
       margin-bottom: 2rem;
-      max-width: 900px;
+      max-width: 800px;
       margin-left: auto;
       margin-right: auto;
+      transition: all 0.3s ease;
     }
+
+    .service:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-5px);
+    }
+
     .service h3 a {
-      color: #00f6ff;
       font-size: 1.5rem;
+      color: #00f6ff;
       text-decoration: none;
     }
+
     .service p {
-      color: #e0f7fa;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
+      color: #f0faff;
       margin-top: 0.5rem;
     }
 
-    .footer {
-      background-color: rgba(0, 0, 0, 0.9);
-      padding: 1.5rem;
+    footer {
       text-align: center;
-      color: #cccccc;
+      padding: 1.5rem;
+      background-color: rgba(0, 0, 0, 0.85);
+      color: #ccc;
       font-size: 0.9rem;
-    }
-
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2.2rem;
-      }
-      .hero p {
-        font-size: 1rem;
-      }
-      .services h2 {
-        font-size: 2rem;
-      }
     }
   </style>
 </head>
@@ -123,47 +131,40 @@
 
   <section class="hero">
     <h1>Vionyx</h1>
-    <p>Empowering your digital future with AI, automation, and scalable IT solutions.</p>
+    <p>Empowering your digital future with tailored IT solutions and cutting-edge innovation.</p>
   </section>
 
   <section class="services">
-    <h2>What We Offer</h2>
-
+    <h2>Our Services</h2>
     <div class="service">
       <h3><a href="custom-software.html">Custom Software Development</a></h3>
       <p>We build powerful, scalable software tailored to your business — from enterprise tools to innovative startups.</p>
     </div>
-
     <div class="service">
       <h3><a href="web-mobile.html">Web & Mobile Solutions</a></h3>
       <p>Engage your audience with cutting-edge websites and responsive mobile apps built for performance and beauty.</p>
     </div>
-
     <div class="service">
       <h3><a href="ai-and-automation.html">AI & Automation</a></h3>
       <p>Use the power of AI to automate tasks, gain insights, and supercharge decision-making with intelligent solutions.</p>
     </div>
-
     <div class="service">
       <h3><a href="cybersecurity-solutions.html">Cybersecurity Solutions</a></h3>
       <p>Protect your digital infrastructure with our advanced threat detection, compliance services, and endpoint protection strategies.</p>
     </div>
-
     <div class="service">
       <h3><a href="devops-infrastructure.html">DevOps & Infrastructure</a></h3>
       <p>Automate deployments, streamline CI/CD pipelines, and improve reliability with our end-to-end DevOps and infrastructure support.</p>
     </div>
-
     <div class="service">
       <h3><a href="ui-ux.html">UI/UX Design Services</a></h3>
       <p>Deliver delightful user experiences through intuitive design, prototyping, and usability testing for web and mobile apps.</p>
     </div>
-
   </section>
 
-  <div class="footer">
+  <footer>
     © 2025 Vionyx. All rights reserved.
-  </div>
+  </footer>
 
 </body>
 </html>
