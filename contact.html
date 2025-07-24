@@ -4,16 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Get in Touch - Vionyx</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: url('https://images.unsplash.com/photo-1532618500676-2b4f79900f0a') no-repeat center center / cover;
+      background: url('https://images.unsplash.com/photo-1581092334805-99d52a6b1d3a?auto=compress&cs=tinysrgb&dpr=2&h=1800&w=2400') no-repeat center center/cover;
       color: #ffffff;
       overflow-x: hidden;
     }
-
     nav {
       background-color: rgba(0, 0, 0, 0.85);
       display: flex;
@@ -21,14 +20,12 @@
       padding: 1rem 2rem;
       align-items: center;
     }
-
     nav .logo {
       font-size: 2rem;
       color: #00f6ff;
       font-weight: 700;
       letter-spacing: 1px;
     }
-
     nav ul {
       list-style: none;
       display: flex;
@@ -36,7 +33,6 @@
       margin: 0;
       padding: 0;
     }
-
     nav ul li a {
       color: #ffffff;
       text-decoration: none;
@@ -44,61 +40,50 @@
       font-size: 1.1rem;
       transition: color 0.3s ease;
     }
-
     nav ul li a:hover {
       color: #00f6ff;
     }
-
-    .hero {
-      background-color: rgba(0, 0, 0, 0.5);
-      padding: 4rem 2rem;
-      text-align: center;
-    }
-
-    .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      color: #ffffff;
-    }
-
-    .form-section {
+    .contact-container {
       max-width: 600px;
-      margin: 2rem auto;
-      background-color: rgba(0, 0, 0, 0.6);
+      margin: 5rem auto;
       padding: 2rem;
-      border-radius: 12px;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 10px;
+      backdrop-filter: blur(3px);
     }
-
-    .form-section label {
+    .contact-container h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2.5rem;
+      color: #00f6ff;
+    }
+    form label {
       display: block;
-      margin-bottom: 0.5rem;
+      margin-top: 1rem;
+      margin-bottom: 0.3rem;
       font-weight: 600;
     }
-
-    .form-section input,
-    .form-section textarea {
+    input, textarea {
       width: 100%;
-      padding: 0.75rem;
-      margin-bottom: 1rem;
+      padding: 0.8rem;
       border: none;
-      border-radius: 6px;
+      border-radius: 5px;
+      margin-bottom: 1rem;
+      font-size: 1rem;
     }
-
-    .form-section button {
+    button {
       background-color: #00f6ff;
       color: #000;
+      padding: 0.8rem 1.5rem;
       border: none;
-      padding: 0.75rem 1.5rem;
-      border-radius: 6px;
+      border-radius: 5px;
       font-size: 1rem;
       cursor: pointer;
-      font-weight: bold;
+      transition: background-color 0.3s ease;
     }
-
-    .form-section button:hover {
-      background-color: #00c7d6;
+    button:hover {
+      background-color: #00d1e0;
     }
-
     .footer {
       text-align: center;
       padding: 2rem;
@@ -113,36 +98,53 @@
     <div class="logo">Vionyx</div>
     <ul>
       <li><a href="index.html">Home</a></li>
+      <li><a href="contact.html">Get in Touch</a></li>
       <li><a href="about.html">Our Journey</a></li>
       <li><a href="blog.html">Insights</a></li>
-      <li><a href="contact.html">Get in Touch</a></li>
     </ul>
   </nav>
 
-  <div class="hero">
+  <div class="contact-container">
     <h1>Contact Us</h1>
-    <p>Let's create something amazing together. Drop us a message!</p>
-  </div>
+    <form id="contactForm" action="https://formspree.io/f/xldljvrl" method="POST">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" name="name" required>
 
-  <section class="form-section">
-    <form action="https://formspree.io/f/xldljvrl" method="POST">
-      <input type="hidden" name="_redirect" value="https://anandmnair1990.github.io/anand-it-site/thank-you.html">
-      
-      <label for="name">Your Name:</label>
-      <input type="text" id="name" name="name" required />
+      <label for="email">Your Email</label>
+      <input type="email" id="email" name="_replyto" required>
 
-      <label for="email">Your Email:</label>
-      <input type="email" id="email" name="_replyto" required />
-
-      <label for="message">Your Message:</label>
+      <label for="message">Your Message</label>
       <textarea id="message" name="message" rows="5" required></textarea>
 
       <button type="submit">Send Message</button>
     </form>
-  </section>
+  </div>
 
   <div class="footer">
     © 2025 Vionyx. All rights reserved.
   </div>
+
+  <script>
+    const form = document.getElementById("contactForm");
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const data = new FormData(form);
+      fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: {
+          'Accept': 'application/json'
+        }
+      }).then(response => {
+        if (response.ok) {
+          window.location.href = "thank-you.html";
+        } else {
+          alert("Error submitting form. Please try again later.");
+        }
+      }).catch(error => {
+        alert("Unexpected error. Please try again.");
+      });
+    });
+  </script>
 </body>
 </html>
