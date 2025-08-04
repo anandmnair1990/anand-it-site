@@ -9,8 +9,9 @@
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=compress&cs=tinysrgb&dpr=2&h=1600&w=2400') no-repeat center center / cover;
-      color: #ffffff;
+      background: url('https://tse1.mm.bing.net/th/id/OIP.L_y_Gu3v1pTtZgkftiJ6CQHaF7?pid=Api') no-repeat center center / cover;
+      color: white;
+      overflow-x: hidden;
     }
 
     nav {
@@ -19,6 +20,8 @@
       justify-content: space-between;
       padding: 1rem 2rem;
       align-items: center;
+      position: relative;
+      z-index: 1000;
     }
 
     .logo {
@@ -45,6 +48,8 @@
       display: none;
       flex-direction: column;
       cursor: pointer;
+      z-index: 1001;
+      position: relative;
     }
 
     .menu-toggle div {
@@ -65,6 +70,7 @@
         width: 200px;
         border-radius: 8px;
         padding: 1rem;
+        z-index: 1000;
       }
       nav ul.active {
         display: flex;
@@ -75,190 +81,166 @@
     }
 
     .hero {
-      padding: 5rem 2rem;
       text-align: center;
-      background: rgba(0,0,0,0.5);
-      backdrop-filter: blur(3px);
+      padding: 4rem 2rem;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(4px);
     }
 
     .hero h1 {
-      font-size: 3rem;
+      font-size: 2.8rem;
+      text-shadow: 1px 1px 5px black;
     }
 
-    .content {
-      padding: 3rem 2rem;
-      max-width: 900px;
-      margin: auto;
+    .articles {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      padding: 2rem;
     }
 
-    .content ul {
-      list-style: none;
-      padding: 0;
+    .article {
+      flex: 1 1 300px;
+      margin: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 1rem;
+      cursor: pointer;
+      backdrop-filter: blur(5px);
     }
 
-    .content ul li {
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
-    }
-
-    .content ul li a {
+    .article h3 {
       color: #00f6ff;
-      text-decoration: underline;
-      font-weight: 500;
+      text-shadow: 1px 1px 3px black;
     }
 
-    .content ul li a:hover {
-      color: #80d8ff;
+    .article p {
+      color: #f0f0f0;
+      text-shadow: 1px 1px 2px black;
     }
 
-    .modal {
+    .popup {
       display: none;
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.7);
-      backdrop-filter: blur(6px);
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-    }
-
-    .modal-content {
-      background: rgba(0, 0, 20, 0.95);
-      padding: 2rem;
-      border-radius: 12px;
+      top: 50%;
+      left: 50%;
+      width: 90%;
       max-width: 600px;
-      color: #e0f7fa;
-    }
-
-    .modal-content h3 {
-      color: #00f6ff;
-    }
-
-    .modal-content a {
-      color: #80d8ff;
-      text-decoration: none;
-    }
-
-    .close-btn {
-      margin-top: 1rem;
-      background: #00f6ff;
-      color: black;
-      border: none;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-      border-radius: 6px;
-    }
-
-    .footer {
-      text-align: center;
+      background-color: rgba(0, 0, 0, 0.95);
+      color: white;
       padding: 2rem;
-      background-color: rgba(0, 0, 0, 0.9);
-      font-size: 0.9rem;
-      color: #cfd8dc;
+      border-radius: 10px;
+      transform: translate(-50%, -50%);
+      z-index: 2000;
+    }
+
+    .popup.active {
+      display: block;
+    }
+
+    .popup .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: white;
+    }
+
+    .popup a {
+      color: #00f6ff;
     }
   </style>
 </head>
 <body>
+
   <nav>
     <div class="logo">Vionyx</div>
-    <div class="menu-toggle" onclick="document.querySelector('nav ul').classList.toggle('active')">
+    <div class="menu-toggle" id="menuToggle">
       <div></div><div></div><div></div>
     </div>
-    <ul>
+    <ul id="navList">
       <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">Our Journey</a></li>
       <li><a href="contact.html">Get in Touch</a></li>
+      <li><a href="about.html">Our Journey</a></li>
     </ul>
   </nav>
 
   <div class="hero">
-    <h1>Insights & Ideas</h1>
-    <p>Explore technology trends, development tips, and expert perspectives from the Vionyx team.</p>
+    <h1>Latest Articles</h1>
+    <p>Discover insights that drive smarter business decisions</p>
   </div>
 
-  <div class="content">
-    <h2>Latest Articles</h2>
-    <ul>
-      <li><a href="#" onclick="openModal('modal1'); return false;">Building Smarter Systems</a></li>
-      <li><a href="#" onclick="openModal('modal2'); return false;">User-Centric Design</a></li>
-      <li><a href="#" onclick="openModal('modal3'); return false;">Security-First Thinking</a></li>
-      <li><a href="#" onclick="openModal('modal4'); return false;">Scaling Infrastructure</a></li>
-    </ul>
-  </div>
-
-  <!-- Modals -->
-  <div class="modal" id="modal1">
-    <div class="modal-content">
+  <div class="articles">
+    <div class="article" onclick="openPopup('popup1')">
       <h3>Building Smarter Systems</h3>
-      <p>Learn how automation and AI can streamline your business operations by reducing manual effort, improving consistency, and boosting scalability in key workflows.</p>
-      <p>
-        <a href="https://www.ibm.com/topics/intelligent-automation" target="_blank">Intelligent Automation – IBM</a> |
-        <a href="https://hbr.org/2020/07/the-potential-for-ai-in-business" target="_blank">AI in Business – HBR</a>
-      </p>
-      <button class="close-btn" onclick="closeModal('modal1')">Close</button>
+      <p>Learn how automation and AI can streamline your business operations.</p>
     </div>
-  </div>
-
-  <div class="modal" id="modal2">
-    <div class="modal-content">
+    <div class="article" onclick="openPopup('popup2')">
       <h3>User-Centric Design</h3>
-      <p>UI/UX design directly impacts user satisfaction and conversions. Good design focuses on clarity, accessibility, and delight.</p>
-      <p>
-        <a href="https://xd.adobe.com/ideas/process/ux-design/" target="_blank">Adobe UX Guide</a> |
-        <a href="https://www.w3.org/WAI/tips/designing/" target="_blank">W3C Accessibility Tips</a>
-      </p>
-      <button class="close-btn" onclick="closeModal('modal2')">Close</button>
+      <p>Discover how UI/UX practices enhance customer satisfaction and retention.</p>
     </div>
-  </div>
-
-  <div class="modal" id="modal3">
-    <div class="modal-content">
+    <div class="article" onclick="openPopup('popup3')">
       <h3>Security-First Thinking</h3>
-      <p>Modern cyber threats include phishing, ransomware, and data breaches. Businesses must prioritize security in every stage of development.</p>
-      <p>
-        <a href="https://csrc.nist.gov/publications/detail/sp/800-207/final" target="_blank">Zero Trust – NIST</a> |
-        <a href="https://www.ncsc.gov.uk/cyberessentials/overview" target="_blank">UK Cyber Essentials</a>
-      </p>
-      <button class="close-btn" onclick="closeModal('modal3')">Close</button>
+      <p>Get insights into modern cybersecurity threats and how to protect against them.</p>
     </div>
-  </div>
-
-  <div class="modal" id="modal4">
-    <div class="modal-content">
+    <div class="article" onclick="openPopup('popup4')">
       <h3>Scaling Infrastructure</h3>
-      <p>DevOps practices like CI/CD and containerization enable fast, reliable scaling. Learn how to structure your backend for growth.</p>
-      <p>
-        <a href="https://www.redhat.com/en/topics/devops/what-is-ci-cd" target="_blank">CI/CD by RedHat</a> |
-        <a href="https://aws.amazon.com/architecture/well-architected/" target="_blank">AWS Well-Architected</a>
-      </p>
-      <button class="close-btn" onclick="closeModal('modal4')">Close</button>
+      <p>Understand DevOps practices that support reliable scaling and rapid deployment.</p>
     </div>
   </div>
 
-  <div class="footer">
-    © 2025 Vionyx. All rights reserved.
+  <!-- Popups -->
+  <div id="popup1" class="popup">
+    <span class="close-btn" onclick="closePopup('popup1')">&times;</span>
+    <h3>Building Smarter Systems</h3>
+    <p>Explore how automation and AI solutions can transform operational efficiency. <br/>
+    <a href="https://www.forbes.com/sites/forbestechcouncil/2024/03/01/the-future-of-smart-enterprise-automation/" target="_blank">Read more on Forbes</a></p>
+  </div>
+
+  <div id="popup2" class="popup">
+    <span class="close-btn" onclick="closePopup('popup2')">&times;</span>
+    <h3>User-Centric Design</h3>
+    <p>UI/UX design isn't just aesthetic – it’s a strategic business tool. <br/>
+    <a href="https://www.nngroup.com/articles/why-user-experience-matters/" target="_blank">Why UX matters – Nielsen Norman Group</a></p>
+  </div>
+
+  <div id="popup3" class="popup">
+    <span class="close-btn" onclick="closePopup('popup3')">&times;</span>
+    <h3>Security-First Thinking</h3>
+    <p>Cybersecurity is a must-have mindset in 2025. <br/>
+    <a href="https://www.csoonline.com/article/563914/top-10-cybersecurity-trends.html" target="_blank">Top cybersecurity trends – CSO Online</a></p>
+  </div>
+
+  <div id="popup4" class="popup">
+    <span class="close-btn" onclick="closePopup('popup4')">&times;</span>
+    <h3>Scaling Infrastructure</h3>
+    <p>DevOps enables agility, resilience, and scalability. <br/>
+    <a href="https://www.redhat.com/en/topics/devops" target="_blank">DevOps explained – RedHat</a></p>
   </div>
 
   <script>
-    function openModal(id) {
-      document.getElementById(id).style.display = "flex";
+    function openPopup(id) {
+      document.getElementById(id).classList.add("active");
     }
 
-    function closeModal(id) {
-      document.getElementById(id).style.display = "none";
+    function closePopup(id) {
+      document.getElementById(id).classList.remove("active");
     }
 
-    document.addEventListener("click", function(e) {
-      if (!e.target.closest('.modal-content') && e.target.classList.contains('modal')) {
-        e.target.style.display = "none";
-      }
-      const toggle = document.querySelector(".menu-toggle");
-      const menu = document.querySelector("nav ul");
-      if (!toggle.contains(e.target) && !menu.contains(e.target)) {
-        menu.classList.remove("active");
+    const toggle = document.getElementById("menuToggle");
+    const nav = document.getElementById("navList");
+
+    toggle.addEventListener("click", () => {
+      nav.classList.toggle("active");
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!toggle.contains(e.target) && !nav.contains(e.target)) {
+        nav.classList.remove("active");
       }
     });
   </script>
+
 </body>
 </html>
