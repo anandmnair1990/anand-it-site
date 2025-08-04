@@ -3,29 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Get in Touch - Vionyx</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <title>Contact Us - Vionyx</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
   <style>
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: url('https://images.unsplash.com/photo-1581092334805-99d52a6b1d3a?auto=compress&cs=tinysrgb&dpr=2&h=1800&w=2400') no-repeat center center/cover;
-      color: #ffffff;
+      background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=compress&cs=tinysrgb&dpr=2&h=1600&w=2400') no-repeat center center / cover;
+      color: white;
       overflow-x: hidden;
     }
+
     nav {
       background-color: rgba(0, 0, 0, 0.85);
       display: flex;
       justify-content: space-between;
       padding: 1rem 2rem;
       align-items: center;
+      position: relative;
+      z-index: 1000;
     }
-    nav .logo {
-      font-size: 2rem;
+
+    .logo {
+      font-size: 1.8rem;
       color: #00f6ff;
       font-weight: 700;
-      letter-spacing: 1px;
     }
+
     nav ul {
       list-style: none;
       display: flex;
@@ -33,98 +37,173 @@
       margin: 0;
       padding: 0;
     }
+
     nav ul li a {
-      color: #ffffff;
+      color: white;
       text-decoration: none;
       font-weight: 500;
-      font-size: 1.1rem;
-      transition: color 0.3s ease;
     }
-    nav ul li a:hover {
-      color: #00f6ff;
-    }
-    .contact-container {
-      max-width: 600px;
-      margin: 5rem auto;
-      padding: 2rem;
-      background-color: rgba(0, 0, 0, 0.6);
-      border-radius: 10px;
-      backdrop-filter: blur(3px);
-    }
-    .contact-container h1 {
-      text-align: center;
-      margin-bottom: 2rem;
-      font-size: 2.5rem;
-      color: #00f6ff;
-    }
-    form label {
-      display: block;
-      margin-top: 1rem;
-      margin-bottom: 0.3rem;
-      font-weight: 600;
-    }
-    input, textarea {
-      width: 100%;
-      padding: 0.8rem;
-      border: none;
-      border-radius: 5px;
-      margin-bottom: 1rem;
-      font-size: 1rem;
-    }
-    button {
-      background-color: #00f6ff;
-      color: #000;
-      padding: 0.8rem 1.5rem;
-      border: none;
-      border-radius: 5px;
-      font-size: 1rem;
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
       cursor: pointer;
-      transition: background-color 0.3s ease;
     }
-    button:hover {
-      background-color: #00d1e0;
+
+    .menu-toggle div {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      margin: 4px 0;
     }
-    .footer {
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        flex-direction: column;
+        background: rgba(0, 0, 0, 0.95);
+        width: 200px;
+        border-radius: 8px;
+        padding: 1rem;
+      }
+      nav ul.active {
+        display: flex;
+      }
+      .menu-toggle {
+        display: flex;
+      }
+    }
+
+    .hero {
       text-align: center;
+      padding: 4rem 2rem;
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(4px);
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+    }
+
+    .contact-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
       padding: 2rem;
-      background-color: rgba(0, 0, 0, 0.9);
+      background-color: rgba(0,0,0,0.6);
+    }
+
+    .contact-form, .contact-info {
+      flex: 1 1 400px;
+      margin: 1rem;
+      background: rgba(255,255,255,0.1);
+      padding: 2rem;
+      border-radius: 10px;
+      backdrop-filter: blur(8px);
+    }
+
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      margin: 0.5rem 0;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 5px;
       font-size: 1rem;
-      color: #cfd8dc;
+    }
+
+    .contact-form button {
+      background-color: #00f6ff;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: bold;
+      color: black;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+
+    .contact-info h3 {
+      color: #00f6ff;
+    }
+
+    .floating-whatsapp {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 999;
+    }
+
+    .floating-whatsapp img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.3);
+      box-shadow: 0 0 12px rgba(0, 255, 0, 0.7);
     }
   </style>
 </head>
 <body>
+
   <nav>
     <div class="logo">Vionyx</div>
-    <ul>
+    <div class="menu-toggle" id="menuToggle">
+      <div></div><div></div><div></div>
+    </div>
+    <ul id="navList">
       <li><a href="index.html">Home</a></li>
-      <li><a href="contact.html">Get in Touch</a></li>
       <li><a href="about.html">Our Journey</a></li>
       <li><a href="blog.html">Insights</a></li>
     </ul>
   </nav>
 
-  <div class="contact-container">
+  <div class="hero">
     <h1>Contact Us</h1>
-    <form id="contactForm" action="https://formspree.io/f/xldljvrl" method="POST">
-      <label for="name">Your Name</label>
-      <input type="text" id="name" name="name" required>
-
-      <label for="email">Your Email</label>
-      <input type="email" id="email" name="_replyto" required>
-
-      <label for="message">Your Message</label>
-      <textarea id="message" name="message" rows="5" required></textarea>
-
-      <button type="submit">Send Message</button>
-    </form>
+    <p>We’d love to hear from you</p>
   </div>
 
-  <div class="footer">
-    © 2025 Vionyx. All rights reserved.
+  <div class="contact-container">
+    <div class="contact-info">
+      <h3>Company Contact</h3>
+      <p><strong>Phone:</strong> +44 330 127 2170</p>
+      <p><strong>Email:</strong> info@vionyx.tech</p>
+    </div>
+
+    <div class="contact-form">
+      <h3>Send Us a Message</h3>
+      <form id="contactForm" action="#" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required/>
+        <input type="email" name="email" placeholder="Your Email" required/>
+        <input type="text" name="subject" placeholder="Subject" required/>
+        <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="floating-whatsapp">
+    <a href="https://wa.me/443301272170" target="_blank" title="Chat on WhatsApp">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+    </a>
   </div>
 
   <script>
+    const toggle = document.getElementById("menuToggle");
+    const nav = document.getElementById("navList");
+
+    toggle.addEventListener("click", () => {
+      nav.classList.toggle("active");
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!toggle.contains(e.target) && !nav.contains(e.target)) {
+        nav.classList.remove("active");
+      }
+    });
+
     const form = document.getElementById("contactForm");
     form.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -132,19 +211,18 @@
       fetch(form.action, {
         method: form.method,
         body: data,
-        headers: {
-          'Accept': 'application/json'
-        }
+        headers: { 'Accept': 'application/json' }
       }).then(response => {
         if (response.ok) {
           window.location.href = "thank-you.html";
         } else {
           alert("Error submitting form. Please try again later.");
         }
-      }).catch(error => {
+      }).catch(() => {
         alert("Unexpected error. Please try again.");
       });
     });
   </script>
+
 </body>
 </html>
