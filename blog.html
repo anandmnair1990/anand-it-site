@@ -4,15 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Insights - Vionyx</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
   <style>
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
       background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=compress&cs=tinysrgb&dpr=2&h=1600&w=2400') no-repeat center center / cover;
       color: #ffffff;
-      overflow-x: hidden;
     }
+
     nav {
       background-color: rgba(0, 0, 0, 0.85);
       display: flex;
@@ -20,66 +20,156 @@
       padding: 1rem 2rem;
       align-items: center;
     }
-    nav .logo {
+
+    .logo {
       font-size: 1.8rem;
       color: #00f6ff;
       font-weight: 700;
     }
-    nav a {
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
       color: white;
       text-decoration: none;
-      font-size: 1rem;
-      transition: color 0.3s ease;
+      font-weight: 500;
     }
-    nav a:hover {
-      color: #00f6ff;
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
     }
+
+    .menu-toggle div {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      margin: 4px 0;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        flex-direction: column;
+        background: rgba(0, 0, 0, 0.95);
+        width: 200px;
+        border-radius: 8px;
+        padding: 1rem;
+      }
+      nav ul.active {
+        display: flex;
+      }
+      .menu-toggle {
+        display: flex;
+      }
+    }
+
     .hero {
-      background-color: rgba(0, 0, 0, 0.5);
       padding: 5rem 2rem;
       text-align: center;
+      background: rgba(0,0,0,0.5);
       backdrop-filter: blur(3px);
     }
+
     .hero h1 {
       font-size: 3rem;
-      margin-bottom: 1rem;
     }
-    .hero p {
-      font-size: 1.2rem;
-      max-width: 800px;
-      margin: 0 auto;
-    }
+
     .content {
       padding: 3rem 2rem;
-      background-color: rgba(0,0,0,0.6);
       max-width: 900px;
-      margin: 2rem auto;
-      border-radius: 12px;
-      backdrop-filter: blur(2px);
+      margin: auto;
     }
-    .content h2 {
-      font-size: 2rem;
-      color: #00f6ff;
+
+    .content ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .content ul li {
+      font-size: 1.2rem;
       margin-bottom: 1rem;
     }
-    .content p {
-      font-size: 1rem;
-      line-height: 1.6;
-      color: #f0faff;
+
+    .content ul li a {
+      color: #00f6ff;
+      text-decoration: underline;
+      font-weight: 500;
     }
+
+    .content ul li a:hover {
+      color: #80d8ff;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(6px);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .modal-content {
+      background: rgba(0, 0, 20, 0.95);
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 600px;
+      color: #e0f7fa;
+    }
+
+    .modal-content h3 {
+      color: #00f6ff;
+    }
+
+    .modal-content a {
+      color: #80d8ff;
+      text-decoration: none;
+    }
+
+    .close-btn {
+      margin-top: 1rem;
+      background: #00f6ff;
+      color: black;
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+
     .footer {
       text-align: center;
       padding: 2rem;
       background-color: rgba(0, 0, 0, 0.9);
-      color: #cfd8dc;
       font-size: 0.9rem;
+      color: #cfd8dc;
     }
   </style>
 </head>
 <body>
   <nav>
     <div class="logo">Vionyx</div>
-    <a href="index.html">← Back to Home</a>
+    <div class="menu-toggle" onclick="document.querySelector('nav ul').classList.toggle('active')">
+      <div></div><div></div><div></div>
+    </div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">Our Journey</a></li>
+      <li><a href="contact.html">Get in Touch</a></li>
+    </ul>
   </nav>
 
   <div class="hero">
@@ -89,17 +179,86 @@
 
   <div class="content">
     <h2>Latest Articles</h2>
-    <p><strong>🔍 Building Smarter Systems:</strong> Learn how automation and AI can streamline your business operations.</p>
+    <ul>
+      <li><a href="#" onclick="openModal('modal1'); return false;">Building Smarter Systems</a></li>
+      <li><a href="#" onclick="openModal('modal2'); return false;">User-Centric Design</a></li>
+      <li><a href="#" onclick="openModal('modal3'); return false;">Security-First Thinking</a></li>
+      <li><a href="#" onclick="openModal('modal4'); return false;">Scaling Infrastructure</a></li>
+    </ul>
+  </div>
 
-    <p><strong>🧠 User-Centric Design:</strong> Discover how UI/UX practices enhance customer satisfaction and retention.</p>
+  <!-- Modals -->
+  <div class="modal" id="modal1">
+    <div class="modal-content">
+      <h3>Building Smarter Systems</h3>
+      <p>Learn how automation and AI can streamline your business operations by reducing manual effort, improving consistency, and boosting scalability in key workflows.</p>
+      <p>
+        <a href="https://www.ibm.com/topics/intelligent-automation" target="_blank">Intelligent Automation – IBM</a> |
+        <a href="https://hbr.org/2020/07/the-potential-for-ai-in-business" target="_blank">AI in Business – HBR</a>
+      </p>
+      <button class="close-btn" onclick="closeModal('modal1')">Close</button>
+    </div>
+  </div>
 
-    <p><strong>🔐 Security-First Thinking:</strong> Get insights into modern cybersecurity threats and how to protect against them.</p>
+  <div class="modal" id="modal2">
+    <div class="modal-content">
+      <h3>User-Centric Design</h3>
+      <p>UI/UX design directly impacts user satisfaction and conversions. Good design focuses on clarity, accessibility, and delight.</p>
+      <p>
+        <a href="https://xd.adobe.com/ideas/process/ux-design/" target="_blank">Adobe UX Guide</a> |
+        <a href="https://www.w3.org/WAI/tips/designing/" target="_blank">W3C Accessibility Tips</a>
+      </p>
+      <button class="close-btn" onclick="closeModal('modal2')">Close</button>
+    </div>
+  </div>
 
-    <p><strong>🚀 Scaling Infrastructure:</strong> Understand DevOps practices that support reliable scaling and rapid deployment.</p>
+  <div class="modal" id="modal3">
+    <div class="modal-content">
+      <h3>Security-First Thinking</h3>
+      <p>Modern cyber threats include phishing, ransomware, and data breaches. Businesses must prioritize security in every stage of development.</p>
+      <p>
+        <a href="https://csrc.nist.gov/publications/detail/sp/800-207/final" target="_blank">Zero Trust – NIST</a> |
+        <a href="https://www.ncsc.gov.uk/cyberessentials/overview" target="_blank">UK Cyber Essentials</a>
+      </p>
+      <button class="close-btn" onclick="closeModal('modal3')">Close</button>
+    </div>
+  </div>
+
+  <div class="modal" id="modal4">
+    <div class="modal-content">
+      <h3>Scaling Infrastructure</h3>
+      <p>DevOps practices like CI/CD and containerization enable fast, reliable scaling. Learn how to structure your backend for growth.</p>
+      <p>
+        <a href="https://www.redhat.com/en/topics/devops/what-is-ci-cd" target="_blank">CI/CD by RedHat</a> |
+        <a href="https://aws.amazon.com/architecture/well-architected/" target="_blank">AWS Well-Architected</a>
+      </p>
+      <button class="close-btn" onclick="closeModal('modal4')">Close</button>
+    </div>
   </div>
 
   <div class="footer">
     © 2025 Vionyx. All rights reserved.
   </div>
+
+  <script>
+    function openModal(id) {
+      document.getElementById(id).style.display = "flex";
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).style.display = "none";
+    }
+
+    document.addEventListener("click", function(e) {
+      if (!e.target.closest('.modal-content') && e.target.classList.contains('modal')) {
+        e.target.style.display = "none";
+      }
+      const toggle = document.querySelector(".menu-toggle");
+      const menu = document.querySelector("nav ul");
+      if (!toggle.contains(e.target) && !menu.contains(e.target)) {
+        menu.classList.remove("active");
+      }
+    });
+  </script>
 </body>
 </html>
