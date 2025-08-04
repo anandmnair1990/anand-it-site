@@ -3,15 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Our Journey | Vionyx</title>
+  <title>About - Vionyx</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
   <style>
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: url('https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=compress&cs=tinysrgb&dpr=2&h=1500&w=2400') no-repeat center center / cover;
-      color: #fff;
+      background: black;
+      color: white;
     }
+
     nav {
       background-color: rgba(0, 0, 0, 0.85);
       display: flex;
@@ -19,12 +20,15 @@
       padding: 1rem 2rem;
       align-items: center;
       position: relative;
+      z-index: 1000;
     }
+
     .logo {
       font-size: 1.8rem;
       color: #00f6ff;
-      font-weight: bold;
+      font-weight: 700;
     }
+
     nav ul {
       list-style: none;
       display: flex;
@@ -32,19 +36,21 @@
       margin: 0;
       padding: 0;
     }
+
     nav ul li a {
-      color: #fff;
+      color: white;
       text-decoration: none;
       font-weight: 500;
     }
-    nav ul li a:hover {
-      color: #00f6ff;
-    }
+
     .menu-toggle {
       display: none;
       flex-direction: column;
       cursor: pointer;
+      z-index: 1001;
+      position: relative;
     }
+
     .menu-toggle div {
       width: 25px;
       height: 3px;
@@ -63,6 +69,7 @@
         width: 200px;
         border-radius: 8px;
         padding: 1rem;
+        z-index: 1000;
       }
       nav ul.active {
         display: flex;
@@ -72,70 +79,68 @@
       }
     }
 
-    .hero {
-      text-align: center;
-      padding: 5rem 2rem 2rem;
-      background-color: rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(3px);
-    }
-    .hero h1 {
-      font-size: 3rem;
-      color: #fff;
-    }
     .content {
+      padding: 3rem 2rem;
       max-width: 800px;
-      margin: 2rem auto;
-      padding: 2rem;
-      background-color: rgba(0, 0, 0, 0.6);
-      border-radius: 12px;
-      line-height: 1.8;
+      margin: auto;
     }
-    .footer {
+
+    h1 {
+      font-size: 2.5rem;
       text-align: center;
-      padding: 2rem;
-      font-size: 1rem;
-      background-color: rgba(0, 0, 0, 0.85);
+      margin-bottom: 2rem;
+    }
+
+    p {
+      line-height: 1.6;
       color: #ccc;
     }
   </style>
 </head>
 <body>
+
   <nav>
     <div class="logo">Vionyx</div>
-    <div class="menu-toggle" onclick="document.querySelector('nav ul').classList.toggle('active')">
+    <div class="menu-toggle" id="menuToggle">
       <div></div>
       <div></div>
       <div></div>
     </div>
-    <ul>
+    <ul id="navList">
       <li><a href="index.html">Home</a></li>
       <li><a href="contact.html">Get in Touch</a></li>
       <li><a href="blog.html">Insights</a></li>
     </ul>
   </nav>
 
-  <div class="hero">
-    <h1>Our Journey</h1>
-  </div>
-
   <div class="content">
-    <p>At Vionyx, our story began with a passion for innovation and a desire to empower businesses through technology. What started as a small team of tech enthusiasts has grown into a full-fledged IT powerhouse delivering cutting-edge solutions across industries.</p>
-    <p>From custom software and mobile applications to AI-powered automation and cybersecurity, we are dedicated to helping organizations achieve more with smart, scalable technology. Our mission is to create meaningful digital experiences that solve real-world problems.</p>
-    <p>Join us as we continue to push boundaries and shape the future — one solution at a time.</p>
-  </div>
-
-  <div class="footer">
-    © 2025 Vionyx. All rights reserved.
+    <h1>About Us</h1>
+    <p>
+      At Vionyx, we believe in building tech that's not only functional but meaningful.
+      Our journey started with a mission to empower small businesses with automation, AI, and design that stands out.
+    </p>
+    <p>
+      From humble beginnings, our team has grown to include experts in software development, UI/UX design, cybersecurity, and data-driven strategy. We're here to help businesses scale with confidence in the digital age.
+    </p>
+    <p>
+      Explore our services, check out our insights, or get in touch — we're excited to work with you.
+    </p>
   </div>
 
   <script>
-    document.addEventListener("click", function(event) {
-      const menu = document.querySelector("nav ul");
-      const toggle = document.querySelector(".menu-toggle");
-      if (!menu.contains(event.target) && !toggle.contains(event.target)) {
-        menu.classList.remove("active");
+    const toggle = document.getElementById("menuToggle");
+    const nav = document.getElementById("navList");
+
+    toggle.addEventListener("click", () => {
+      nav.classList.toggle("active");
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!toggle.contains(e.target) && !nav.contains(e.target)) {
+        nav.classList.remove("active");
       }
     });
   </script>
+
 </body>
 </html>
