@@ -13,18 +13,30 @@
       color: #ffffff;
       overflow-x: hidden;
     }
+
     nav {
       background-color: rgba(0, 0, 0, 0.85);
       display: flex;
       justify-content: space-between;
       padding: 1rem 2rem;
       align-items: center;
+      flex-wrap: wrap;
+      position: relative;
     }
+
     nav .logo {
       font-size: 2rem;
       color: #00f6ff;
       font-weight: 700;
     }
+
+    .hamburger {
+      display: none;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+    }
+
     nav ul {
       list-style: none;
       display: flex;
@@ -32,6 +44,7 @@
       margin: 0;
       padding: 0;
     }
+
     nav ul li a {
       color: #fff;
       text-decoration: none;
@@ -39,34 +52,67 @@
       font-size: 1.1rem;
       transition: color 0.3s ease;
     }
+
     nav ul li a:hover {
       color: #00f6ff;
     }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.95);
+        margin-top: 1rem;
+        position: absolute;
+        left: 0;
+        top: 100%;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .nav-links li {
+        margin: 1rem 0;
+        text-align: center;
+      }
+    }
+
     .hero {
       background-color: rgba(0, 0, 0, 0.5);
       padding: 6rem 2rem;
       text-align: center;
     }
+
     .hero h1 {
       font-size: 3.5rem;
       margin-bottom: 1rem;
     }
+
     .hero p {
       font-size: 1.3rem;
       color: #d8f7ff;
       max-width: 800px;
       margin: 0 auto;
     }
+
     .services {
       padding: 4rem 2rem;
       background-color: rgba(0, 0, 0, 0.7);
     }
+
     .services h2 {
       text-align: center;
       font-size: 2.5rem;
       color: #00f6ff;
       margin-bottom: 3rem;
     }
+
     .service {
       background-color: rgba(255,255,255,0.05);
       border-radius: 10px;
@@ -75,18 +121,22 @@
       max-width: 900px;
       transition: transform 0.3s ease;
     }
+
     .service:hover {
       transform: scale(1.02);
     }
+
     .service h3 a {
       color: #00f6ff;
       font-size: 1.6rem;
       text-decoration: none;
     }
+
     .service p {
       font-size: 1.1rem;
       color: #f1f9fc;
     }
+
     .footer {
       text-align: center;
       padding: 2rem;
@@ -94,13 +144,57 @@
       background-color: rgba(0, 0, 0, 0.9);
       color: #cfd8dc;
     }
+
+    .floating-icon {
+      position: fixed;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      padding: 6px;
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      background-color: transparent;
+      background-image: radial-gradient(rgba(255,255,255,0.1), transparent);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      z-index: 999;
+    }
+
+    .floating-icon img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      filter: brightness(0.85);
+    }
+
+    .floating-icon:hover {
+      transform: scale(1.1);
+    }
+
+    .whatsapp-float {
+      bottom: 90px;
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.3), 0 0 4px rgba(37, 211, 102, 0.3);
+    }
+
+    .whatsapp-float:hover {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.4), 0 0 8px rgba(37, 211, 102, 0.5);
+    }
+
+    .linkedin-float {
+      bottom: 20px;
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.3), 0 0 4px rgba(10, 102, 194, 0.3);
+    }
+
+    .linkedin-float:hover {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.4), 0 0 8px rgba(10, 102, 194, 0.5);
+    }
   </style>
 </head>
 <body>
-  <nav>
+  <nav id="mainNav">
     <div class="logo">Vionyx</div>
-    <ul>
-      <li><a href="index.html">Home</a></li>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <ul class="nav-links">
+      <li class="nav-home"><a href="index.html">Home</a></li>
       <li><a href="contact.html">Get in Touch</a></li>
       <li><a href="about.html">Our Journey</a></li>
       <li><a href="blog.html">Insights</a></li>
@@ -149,6 +243,40 @@
   <div class="footer">
     © 2025 Vionyx. All rights reserved.
   </div>
+
+  <!-- Floating Icons -->
+  <a href="https://wa.me/443301272170" class="floating-icon whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+    <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WhatsApp Chat"/>
+  </a>
+
+  <a href="https://www.linkedin.com/company/108062318/admin/dashboard/" class="floating-icon linkedin-float" target="_blank" aria-label="LinkedIn Page">
+    <img src="https://cdn-icons-png.flaticon.com/512/145/145807.png" alt="LinkedIn"/>
+  </a>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.querySelector('.nav-links');
+      menu.classList.toggle('show');
+    }
+
+    // Hide "Home" on index.html
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/') {
+        const homeItem = document.querySelector('.nav-home');
+        if (homeItem) homeItem.remove();
+      }
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function (event) {
+      const nav = document.getElementById('mainNav');
+      const hamburger = document.querySelector('.hamburger');
+      const menu = document.querySelector('.nav-links');
+
+      if (!nav.contains(event.target) && menu.classList.contains('show')) {
+        menu.classList.remove('show');
+      }
+    });
+  </script>
 </body>
 </html>
-
