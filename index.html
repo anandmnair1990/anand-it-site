@@ -4,7 +4,28 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Vionyx - Empowering Digital Innovation</title>
+
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/logo.png" type="image/png">
+
+  <!-- Structured Data for Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Vionyx",
+    "url": "https://www.vionyx.tech",
+    "logo": "https://www.vionyx.tech/logo.png",
+    "sameAs": [
+      "https://www.linkedin.com/company/108062318/",
+      "https://wa.me/443301272170"
+    ]
+  }
+  </script>
+
   <style>
     body {
       margin: 0;
@@ -267,7 +288,6 @@
       menu.classList.toggle('show');
     }
 
-    // Hide "Home" on index.html
     document.addEventListener('DOMContentLoaded', () => {
       if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/') {
         const homeItem = document.querySelector('.nav-home');
@@ -275,12 +295,9 @@
       }
     });
 
-    // Close menu when clicking outside
     document.addEventListener('click', function (event) {
       const nav = document.getElementById('mainNav');
-      const hamburger = document.querySelector('.hamburger');
       const menu = document.querySelector('.nav-links');
-
       if (!nav.contains(event.target) && menu.classList.contains('show')) {
         menu.classList.remove('show');
       }
