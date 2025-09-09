@@ -12,23 +12,21 @@
       function gtag(){ dataLayer.push(arguments); }
       window.gtag = window.gtag || gtag;
 
-      // Default deny in regions where you show a banner (add more EU/EEA country codes if needed)
+      // Default deny in UK/EU (adjust if needed)
       gtag('consent', 'default', {
         ad_storage: 'denied',
         analytics_storage: 'denied',
         ad_user_data: 'denied',
         ad_personalization: 'denied'
-      }, {
-        region: ['GB','IE','DE','FR','NL','ES','IT','SE','NO','DK','FI','AT','BE','PT','PL']
-      });
+      }, { region: ['GB','IE','DE','FR','NL','ES','IT','SE','NO','DK','FI','AT','BE','PT','PL'] });
 
-      // Apply saved choice (from our banner) if it exists
+      // Apply saved choice if it exists
       try {
         const saved = JSON.parse(localStorage.getItem('consentChoice') || 'null');
         if (saved && saved.state) gtag('consent', 'update', saved.state);
       } catch(e) {}
 
-      // Helper used by banner buttons
+      // Helper for banner buttons
       window.applyConsent = function(accept) {
         const state = accept ? {
           ad_storage: 'granted',
@@ -57,6 +55,7 @@
     gtag('config', 'AW-17444594729');
   </script>
 
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
@@ -191,8 +190,8 @@
   <!-- CTA -->
   <section class="cta">
     <input id="domainInput" type="text" placeholder="Your business name or domain (e.g., vionyx or vionyx.co.uk)">
-    <button id="checkBtn" class="btn">Check Domain</button>
-    <button id="createBtn" class="btn btn-primary">Create Website</button>
+    <button id="checkBtn" class="btn" type="button">Check Domain</button>
+    <button id="createBtn" class="btn btn-primary" type="button">Create Website</button>
   </section>
   <div class="results" id="results" aria-live="polite"></div>
 
@@ -240,7 +239,7 @@
   <a href="https://wa.me/443301272170" class="floating-icon whatsapp-float" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WhatsApp"/></a>
   <a href="https://www.linkedin.com/company/108062318/admin/dashboard/" class="floating-icon linkedin-float" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/145/145807.png" alt="LinkedIn"/></a>
 
-  <!-- Simple Consent Banner -->
+  <!-- Consent Banner -->
   <div id="consent-banner" style="
     position:fixed;left:0;right:0;bottom:0;z-index:9999;
     background:rgba(0,0,0,.92);color:#fff;padding:16px;display:flex;gap:12px;
@@ -274,46 +273,134 @@
       if(nav && !nav.contains(e.target) && menu.classList.contains('show')) menu.classList.remove('show');
     });
 
-    // ===== Domain checker + redirect =====
-    const API_BASE = "http://localhost:8080"; // change if API is reverse-proxied on same origin
-    const input = document.getElementById('domainInput');
-    const results = document.getElementById('results');
+    // ===== Static RDAP-based checker + TLD suggestions =====
+    const input     = document.getElementById('domainInput');
+    const results   = document.getElementById('results');
+    const checkBtn  = document.getElementById('checkBtn');
+    const createBtn = document.getElementById('createBtn');
 
     function normalizeDomain(v){
-      v=(v||"").trim().toLowerCase().replace(/^https?:\/\//,"").replace(/^www\./,"");
-      if(!v)return""; if(!v.includes("."))return v+".com"; return v;
+      v=(v||"").trim().toLowerCase()
+        .replace(/^https?:\/\//,"")
+        .replace(/^www\./,"");
+      if(!v) return "";
+      if(!v.includes(".")) return v + ".com"; // default to .com
+      return v;
     }
-    function showStatus({domain,available,suggestions,note}){
-      results.innerHTML=""; if(!domain&&note){results.textContent=note;return;}
-      const line=document.createElement("div"); line.className="status-line";
-      if(available===true)line.innerHTML=`<strong class="ok">✅ ${domain}</strong> is available`;
-      else if(available===false)line.innerHTML=`<strong class="bad">❌ ${domain}</strong> is taken`;
-      else line.innerHTML=`ℹ️ Checking ${domain}… ${note||""}`; results.appendChild(line);
-      if(Array.isArray(suggestions)&&suggestions.length){
-        const wrap=document.createElement("div");wrap.className="suggestions";
-        suggestions.forEach(s=>{const b=document.createElement("button");b.className="sugg";b.textContent=s.domain;b.onclick=()=>{input.value=s.domain;};wrap.appendChild(b);});
-        results.appendChild(wrap);
+
+    function tldOf(domain){ const p=domain.split("."); return p.length>1 ? p.pop() : ""; }
+
+    function setResultsHTML(html){ results.innerHTML = html; }
+    function showStatus({domain,available,note,suggestions}){
+      let html = "";
+      if(!domain && note){ setResultsHTML(note); return; }
+      html += `<div class="status-line">${
+        available===true
+          ? `<strong class="ok">✅ ${domain}</strong> is available`
+          : available===false
+            ? `<strong class="bad">❌ ${domain}</strong> is taken`
+            : `ℹ️ Checking ${domain}… ${note||""}`
+      }</div>`;
+
+      if(Array.isArray(suggestions) && suggestions.length){
+        html += `<div class="suggestions">` +
+          suggestions.map(s => `<button type="button" class="sugg" data-domain="${s.domain}">${s.domain}</button>`).join("") +
+          `</div>`;
+      }
+      setResultsHTML(html);
+
+      // wire up suggestion clicks
+      document.querySelectorAll('.sugg').forEach(btn=>{
+        btn.onclick = () => { input.value = btn.dataset.domain; };
+      });
+    }
+
+    // RDAP endpoints
+    const REGISTRY_RDAP = {
+      "com": d => `https://rdap.verisign.com/com/v1/domain/${d}`,
+      "net": d => `https://rdap.verisign.com/net/v1/domain/${d}`,
+      "org": d => `https://rdap.publicinterestregistry.net/rdap/org/domain/${d}`
+    };
+
+    async function rdapCheck(domain){
+      // 1) rdap.org
+      try{
+        const r = await fetch(`https://rdap.org/domain/${encodeURIComponent(domain)}`);
+        if(r.status===200) return { available:false, via:"rdap.org" };
+        if(r.status===404) return { available:true,  via:"rdap.org" };
+      }catch(_) {}
+
+      // 2) registry RDAP (for common TLDs)
+      try{
+        const build = REGISTRY_RDAP[tldOf(domain)];
+        if(build){
+          const r = await fetch(build(domain));
+          if(r.status===200) return { available:false, via:"registry" };
+          if(r.status===404) return { available:true,  via:"registry" };
+        }
+      }catch(_) {}
+
+      // 3) permissive proxy (sniff body text)
+      try{
+        const prox = `https://api.allorigins.win/raw?url=${encodeURIComponent("https://rdap.org/domain/" + domain)}`;
+        const r = await fetch(prox);
+        const txt = await r.text();
+        if(/\"objectClassName\"\\s*:\\s*\"domain\"/i.test(txt)) return { available:false, via:"proxy" };
+        if(/not\\s+found|error\\s*404|no\\s+such\\s+domain/i.test(txt)) return { available:true,  via:"proxy" };
+        return { available:null, via:"proxy" };
+      }catch(_){
+        return { available:null };
       }
     }
+
+    async function suggestAlternatives(baseName){
+      const tlds = ["com","net","org","io","ai"];
+      const out = [];
+      for(const t of tlds){
+        const d = `${baseName}.${t}`;
+        try{
+          const res = await rdapCheck(d);
+          if(res.available === true) out.push({ domain: d });
+          if(out.length >= 5) break; // up to 5 chips
+        }catch(_) {}
+      }
+      return out;
+    }
+
     async function doCheck(){
-      const domain=normalizeDomain(input.value); if(!domain){showStatus({domain:"",note:"Enter a name to check."});return;}
-      showStatus({domain}); try{
-        const r=await fetch(`${API_BASE}/api/check?domain=${encodeURIComponent(domain)}`); const j=await r.json();
-        let sugg=[]; if(j.available===false){const key=domain.split(".")[0].replace(/[^a-z0-9]+/g,"");
-          const r2=await fetch(`${API_BASE}/api/suggest-available?q=${encodeURIComponent(key)}&limit=6`);
-          const j2=await r2.json().catch(()=>({})); sugg=Array.isArray(j2?.available)?j2.available:[];}
-        showStatus({domain,available:j.available,suggestions:sugg});
-      }catch(e){showStatus({domain,note:"Could not check now."});}
+      const domain = normalizeDomain(input.value);
+      if(!domain){ showStatus({domain:"", note:"Enter a name to check."}); return; }
+
+      // initial state
+      showStatus({domain});
+
+      try{
+        const res = await rdapCheck(domain);
+        let suggestions = [];
+        if(res.available === false){
+          const base = domain.split(".")[0].replace(/[^a-z0-9]+/g,"") || "mybrand";
+          suggestions = await suggestAlternatives(base);
+          if(!suggestions.length){
+            // soft fallback suggestions if none available
+            suggestions = [{domain: `${base}-app.com`}, {domain: `${base}-site.com`}];
+          }
+        }
+        showStatus({domain, available: res.available, suggestions});
+      }catch(_){
+        showStatus({domain, note:"Could not check now. Try again."});
+      }
     }
+
     function goCreate(){
-      const domain=normalizeDomain(input.value);
-      const url=new URL("packages.html",window.location.href);
-      if(domain)url.searchParams.set("domain",domain);
-      window.location.href=url.toString();
+      const domain = normalizeDomain(input.value);
+      const url = new URL("packages.html", window.location.href);
+      if(domain) url.searchParams.set("domain", domain);
+      window.location.href = url.toString();
     }
-    document.getElementById('checkBtn').onclick=doCheck;
-    document.getElementById('createBtn').onclick=goCreate;
-    input.addEventListener('keydown',e=>{if(e.key==="Enter")doCheck();});
+
+    checkBtn.onclick = doCheck;
+    createBtn.onclick = goCreate;
+    input.addEventListener('keydown', e => { if(e.key === "Enter") doCheck(); });
   </script>
 </body>
 </html>
