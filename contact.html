@@ -4,6 +4,59 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Contact Us - Vionyx</title>
+
+  <!-- Consent Mode v2 (run BEFORE any Google tag) -->
+  <script>
+    (function () {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      window.gtag = window.gtag || gtag;
+
+      // Default deny in regions where you show a banner (extend list as needed)
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        analytics_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied'
+      }, {
+        region: ['GB','IE','DE','FR','NL','ES','IT','SE','NO','DK','FI','AT','BE','PT','PL']
+      });
+
+      // Apply saved choice if it exists
+      try {
+        const saved = JSON.parse(localStorage.getItem('consentChoice') || 'null');
+        if (saved && saved.state) gtag('consent', 'update', saved.state);
+      } catch(e) {}
+
+      // Helper used by banner buttons
+      window.applyConsent = function(accept) {
+        const state = accept ? {
+          ad_storage: 'granted',
+          analytics_storage: 'granted',
+          ad_user_data: 'granted',
+          ad_personalization: 'granted'
+        } : {
+          ad_storage: 'denied',
+          analytics_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied'
+        };
+        gtag('consent', 'update', state);
+        localStorage.setItem('consentChoice', JSON.stringify({ state, ts: Date.now() }));
+        var b = document.getElementById('consent-banner'); if (b) b.remove();
+      };
+    })();
+  </script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17444594729"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-17444594729');
+  </script>
+
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
   <style>
     body {
@@ -174,12 +227,15 @@
 
     <div class="contact-form">
       <h3>Send Us a Message</h3>
+      <!-- Formspree form -->
       <form id="contactForm" action="https://formspree.io/f/xldljvrl" method="POST">
         <input type="text" name="name" placeholder="Your Name" required/>
         <input type="email" name="email" placeholder="Your Email" required/>
-        <input type="tel" name="phone" placeholder="Your Phone Number (optional)" pattern="[0-9+\-\s()]{7,}" />
+        <input type="tel" name="phone" placeholder="Your Phone Number (optional)" pattern="[0-9+\\-\\s()]{7,}" />
         <input type="text" name="subject" placeholder="Subject" required/>
         <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+        <!-- Optional: let Formspree also know the redirect (backup if JS is blocked) -->
+        <input type="hidden" name="_redirect" value="thank-you.html?lead=contact" />
         <button type="submit">Send Message</button>
       </form>
     </div>
@@ -190,6 +246,31 @@
       <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
     </a>
   </div>
+
+  <!-- Simple Consent Banner -->
+  <div id="consent-banner" style="
+    position:fixed;left:0;right:0;bottom:0;z-index:9999;
+    background:rgba(0,0,0,.92);color:#fff;padding:16px;display:flex;gap:12px;
+    align-items:center;justify-content:center;flex-wrap:wrap;font:14px/1.4 system-ui,Segoe UI,Roboto,Arial">
+    <span style="max-width:820px;opacity:.95">
+      We use cookies to analyze traffic and improve your experience. You can accept or reject optional cookies.
+    </span>
+    <div style="display:flex;gap:8px">
+      <button onclick="applyConsent(false)" style="padding:10px 14px;border:1px solid #666;background:#222;color:#fff;border-radius:8px;cursor:pointer">Reject all</button>
+      <button onclick="applyConsent(true)" style="padding:10px 14px;border:0;background:linear-gradient(90deg,#0aa0ff,#00f6ff);color:#00222a;border-radius:8px;cursor:pointer;font-weight:700">Accept all</button>
+    </div>
+  </div>
+  <script>
+    // Hide banner if a choice already exists
+    (function(){
+      try {
+        if (localStorage.getItem('consentChoice')) {
+          var b = document.getElementById('consent-banner');
+          if (b) b.remove();
+        }
+      } catch(e) {}
+    })();
+  </script>
 
   <script>
     const toggle = document.getElementById("menuToggle");
@@ -205,6 +286,7 @@
       }
     });
 
+    // Handle Formspree submit → redirect to our Thank You with label
     const form = document.getElementById("contactForm");
     form.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -215,7 +297,8 @@
         headers: { 'Accept': 'application/json' }
       }).then(response => {
         if (response.ok) {
-          window.location.href = "thank-you.html";
+          // Use lead=contact so thank-you can fire the right conversion label
+          window.location.href = "thank-you.html?lead=contact";
         } else {
           alert("Error submitting form. Please try again later.");
         }

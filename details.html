@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UI/UX Design Services | Vionyx</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Your Details — Vionyx</title>
 
   <!-- Consent Mode v2 -->
   <script>
@@ -53,89 +53,72 @@
   </script>
 
   <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: url('https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=800&w=1400') no-repeat center center / cover;
-      color: #fff;
-      padding-bottom: 4rem;
-    }
-    .nav-top {
-      background-color: rgba(0, 0, 0, 0.8);
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-    }
-    .nav-top a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .content {
-      padding: 3rem;
-      background-color: rgba(0,0,0,0.75);
-      border-radius: 12px;
-      max-width: 900px;
-      margin: 2rem auto;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-    }
-    .content h1 {
-      font-size: 2.8rem;
-      margin-bottom: 1rem;
-      color: #ff7f50;
-    }
-    .content h2 {
-      color: #87ceeb;
-      margin-top: 2rem;
-    }
-    .content ul {
-      list-style-type: disc;
-      padding-left: 1.5rem;
-      line-height: 1.8;
-    }
-    .floating-contact {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #ff4500;
-      color: white;
-      padding: 1rem 1.5rem;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      transition: background 0.3s ease;
-    }
-    .floating-contact:hover {
-      background-color: #e03e00;
-    }
+    body{margin:0;font-family:Poppins,system-ui,Arial;background:#0b1720;color:#fff}
+    .wrap{max-width:900px;margin:0 auto;padding:2rem}
+    h1{margin:.2rem 0 1rem}
+    .meta{margin:.6rem 0 1rem;color:#9fdfff}
+    .box{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:1rem}
+    a.small{color:#9fdfff;text-decoration:none}
+    .iframe-wrap{margin-top:.8rem}
+    .note{font-size:.9rem;opacity:.85;margin-top:.6rem}
   </style>
 </head>
 <body>
-  <div class="nav-top">
-    <a href="index.html">← Back to Home</a>
-    <div>Vionyx</div>
+  <div class="wrap">
+    <h1>Confirm your details</h1>
+    <p id="summary" class="meta"></p>
+
+    <div class="box">
+      <div class="iframe-wrap">
+        <iframe
+          id="jotFormFrame"
+          title="Website enquiry"
+          style="width:100%;height:1100px;border:0;border-radius:12px;background:#fff"
+          src=""
+          allow="clipboard-write; fullscreen"
+        ></iframe>
+      </div>
+      <p class="note">All submissions are handled securely by Jotform. If the form doesn’t load, 
+        <a class="small" id="openDirect" href="#" target="_blank" rel="noopener">open it in a new tab</a>.
+      </p>
+      <p style="margin-top:.8rem"><a class="small" href="packages.html">← Back to packages</a></p>
+    </div>
   </div>
 
-  <div class="content">
-    <h1>UI/UX Design Services</h1>
-    <p>
-      At Vionyx, we craft intuitive, elegant, and user-centered designs for web and mobile platforms. Our design team ensures your digital product delivers an unforgettable user experience that drives engagement and conversion.
-    </p>
-    <h2>What We Deliver</h2>
-    <ul>
-      <li>Wireframing, prototyping, and interactive mockups</li>
-      <li>Responsive UI design for all devices</li>
-      <li>User research, persona development, and testing</li>
-      <li>UX audits and performance improvements</li>
-      <li>Accessibility-first and modern aesthetic approach</li>
-    </ul>
-    <p>
-      From apps to enterprise dashboards, we bring user delight and design precision to every pixel.
-    </p>
-  </div>
+  <script>
+    const JOTFORM_URL = "https://form.jotform.com/252498143333054";
 
-  <a href="contact.html" class="floating-contact">Contact Us</a>
+    function normalizeDomain(v){
+      v=(v||"").trim().toLowerCase().replace(/^https?:\/\//,"").replace(/^www\./,"");
+      if(!v) return "";
+      if(!v.includes(".")) return v + ".com";
+      return v;
+    }
+    function loadState(){
+      const plan    = sessionStorage.getItem("v_plan") || "";
+      const billing = sessionStorage.getItem("v_billing") || "";
+      const domain  = normalizeDomain(sessionStorage.getItem("v_domain") || "");
+      return { plan, billing, domain };
+    }
+
+    (function init(){
+      const { plan, billing, domain } = loadState();
+      if (!plan || !billing) {
+        location.href = "packages.html";
+        return;
+      }
+      const params = new URLSearchParams({
+        plan, billing, availability_checked: "true", source_url: location.href
+      });
+      if (domain) params.set("domain", domain);
+      const fullUrl = `${JOTFORM_URL}?${params.toString()}`;
+      document.getElementById("jotFormFrame").src = fullUrl;
+      document.getElementById("openDirect").href = fullUrl;
+      const billTxt = billing === "monthly" ? "Monthly" : (billing === "oneoff" ? "One-off" : billing);
+      document.getElementById("summary").textContent =
+        `Selected: ${plan} — ${billTxt}` + (domain ? ` | Domain: ${domain}` : ``);
+    })();
+  </script>
 
   <!-- Consent banner -->
   <div id="consent-banner" style="

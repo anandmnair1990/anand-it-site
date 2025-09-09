@@ -4,6 +4,59 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Custom Software Development | Vionyx</title>
+
+  <!-- Consent Mode v2 (run BEFORE Google tag) -->
+  <script>
+    (function () {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      window.gtag = window.gtag || gtag;
+
+      // Default deny in regions where you show a banner
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        analytics_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied'
+      }, {
+        region: ['GB','IE','DE','FR','NL','ES','IT','SE','NO','DK','FI','AT','BE','PT','PL']
+      });
+
+      // Apply saved choice if it exists
+      try {
+        const saved = JSON.parse(localStorage.getItem('consentChoice') || 'null');
+        if (saved && saved.state) gtag('consent', 'update', saved.state);
+      } catch(e) {}
+
+      // Helper for banner buttons
+      window.applyConsent = function(accept) {
+        const state = accept ? {
+          ad_storage: 'granted',
+          analytics_storage: 'granted',
+          ad_user_data: 'granted',
+          ad_personalization: 'granted'
+        } : {
+          ad_storage: 'denied',
+          analytics_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied'
+        };
+        gtag('consent', 'update', state);
+        localStorage.setItem('consentChoice', JSON.stringify({ state, ts: Date.now() }));
+        var b = document.getElementById('consent-banner'); if (b) b.remove();
+      };
+    })();
+  </script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17444594729"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-17444594729');
+  </script>
+
   <link rel="stylesheet" href="style.css">
   <style>
     body {
@@ -82,5 +135,29 @@
   </div>
 
   <a href="contact.html" class="floating-contact">Contact Us</a>
+
+  <!-- Consent Banner -->
+  <div id="consent-banner" style="
+    position:fixed;left:0;right:0;bottom:0;z-index:9999;
+    background:rgba(0,0,0,.92);color:#fff;padding:16px;display:flex;gap:12px;
+    align-items:center;justify-content:center;flex-wrap:wrap;font:14px/1.4 system-ui,Segoe UI,Roboto,Arial">
+    <span style="max-width:820px;opacity:.95">
+      We use cookies to analyze traffic and improve your experience. You can accept or reject optional cookies.
+    </span>
+    <div style="display:flex;gap:8px">
+      <button onclick="applyConsent(false)" style="padding:10px 14px;border:1px solid #666;background:#222;color:#fff;border-radius:8px;cursor:pointer">Reject all</button>
+      <button onclick="applyConsent(true)" style="padding:10px 14px;border:0;background:linear-gradient(90deg,#0aa0ff,#00f6ff);color:#00222a;border-radius:8px;cursor:pointer;font-weight:700">Accept all</button>
+    </div>
+  </div>
+  <script>
+    (function(){
+      try {
+        if (localStorage.getItem('consentChoice')) {
+          var b = document.getElementById('consent-banner');
+          if (b) b.remove();
+        }
+      } catch(e) {}
+    })();
+  </script>
 </body>
 </html>
