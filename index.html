@@ -5,60 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Vionyx - Empowering Digital Innovation</title>
 
-  <!-- Cache Busting -->
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
-  <!-- Favicon -->
-  <link rel="icon" href="/logo.png" type="image/png">
-
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Vionyx",
-    "url": "https://www.vionyx.tech",
-    "logo": "https://www.vionyx.tech/logo.png",
-    "sameAs": [
-      "https://www.linkedin.com/company/108062318/",
-      "https://wa.me/443301272170"
-    ]
-  }
-  </script>
-
-  <!-- Consent Mode v2 (must run before tags) -->
+  <!-- Consent Mode v2 (run BEFORE any Google tag) -->
   <script>
     (function () {
       window.dataLayer = window.dataLayer || [];
       function gtag(){ dataLayer.push(arguments); }
       window.gtag = window.gtag || gtag;
 
-      // Default: denied in typical EU/UK regions (adjust if needed)
+      // Default deny in regions where you show a banner (add more EU/EEA country codes if needed)
       gtag('consent', 'default', {
         ad_storage: 'denied',
         analytics_storage: 'denied',
         ad_user_data: 'denied',
         ad_personalization: 'denied'
-      }, { region: ['GB','IE','DE','FR','NL','ES','IT','SE','NO','DK','FI','AT','BE','PT','PL'] });
+      }, {
+        region: ['GB','IE','DE','FR','NL','ES','IT','SE','NO','DK','FI','AT','BE','PT','PL']
+      });
 
-      // Apply saved choice if present
+      // Apply saved choice (from our banner) if it exists
       try {
         const saved = JSON.parse(localStorage.getItem('consentChoice') || 'null');
         if (saved && saved.state) gtag('consent', 'update', saved.state);
       } catch(e) {}
-      // Helper for banner buttons
+
+      // Helper used by banner buttons
       window.applyConsent = function(accept) {
         const state = accept ? {
-          ad_storage: 'granted', analytics_storage: 'granted',
-          ad_user_data: 'granted', ad_personalization: 'granted'
+          ad_storage: 'granted',
+          analytics_storage: 'granted',
+          ad_user_data: 'granted',
+          ad_personalization: 'granted'
         } : {
-          ad_storage: 'denied', analytics_storage: 'denied',
-          ad_user_data: 'denied', ad_personalization: 'denied'
+          ad_storage: 'denied',
+          analytics_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied'
         };
         gtag('consent', 'update', state);
         localStorage.setItem('consentChoice', JSON.stringify({ state, ts: Date.now() }));
@@ -76,20 +57,18 @@
     gtag('config', 'AW-17444594729');
   </script>
 
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
-    :root{
-      --c1:#00f6ff;
-      --c2:#0aa0ff;
-    }
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background:  url('A_digital_painting_or_texture_background_displays_.png') no-repeat center center / cover;
+      background: url('A_digital_painting_or_texture_background_displays_.png') no-repeat center center / cover;
       color: #ffffff;
       overflow-x: hidden;
     }
+
     nav {
-      background-color: rgba(0, 0, 0, 0.85);
       display: flex;
       justify-content: space-between;
       padding: 1rem 2rem;
@@ -97,105 +76,101 @@
       flex-wrap: wrap;
       position: relative;
     }
-    nav .logo { font-size: 2rem; color: var(--c1); font-weight: 700; }
-    .hamburger { display:none; font-size:2rem; color:#fff; cursor:pointer; }
-    nav ul { list-style:none; display:flex; gap:1.5rem; margin:0; padding:0; }
-    nav ul li a{ color:#fff; text-decoration:none; font-weight:500; font-size:1.1rem; }
-    nav ul li a:hover{ color:var(--c1); }
+    nav .logo { font-size: 2rem; color: #00f6ff; font-weight: 700; }
+    .hamburger { display: none; font-size: 2rem; color: #fff; cursor: pointer; }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+    }
+    nav ul li a {
+      color: #fff; text-decoration: none; font-weight: 500; font-size: 1.1rem; transition: color 0.3s ease;
+    }
+    nav ul li a:hover { color: #00f6ff; }
 
-    @media (max-width:768px){
-      .hamburger{ display:block; }
-      .nav-links{
-        display:none; flex-direction:column; width:100%;
-        background:rgba(0,0,0,0.95); margin-top:1rem; position:absolute; left:0; top:100%;
+    @media (max-width: 768px) {
+      .hamburger { display: block; }
+      .nav-links {
+        display: none; flex-direction: column; width: 100%;
+        background-color: rgba(0, 0, 0, 0.95);
+        margin-top: 1rem; position: absolute; left: 0; top: 100%; padding: 1.2rem 0;
       }
-      .nav-links.show{ display:flex; }
-      .nav-links li{ margin:1rem 0; text-align:center; }
+      .nav-links.show { display: flex; }
+      .nav-links li { margin: 1rem 0; text-align: center; }
+      .nav-links li a { font-size: 1.2rem; padding: 0.7rem 1rem; display: block; }
     }
 
-    .hero{
-      background:rgba(0,0,0,0.5);
-      padding: 5rem 1.25rem 3rem;
-      text-align:center;
-    }
-    .hero h1{ font-size: clamp(2.2rem, 4.5vw, 3.5rem); margin:0 0 1rem; color: var(--c1); }
-    .hero p{ font-size:1.1rem; color:#d8f7ff; max-width:900px; margin:0 auto 1.5rem; }
+    .hero { padding: 6rem 2rem 2rem; text-align: center; }
+    .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; }
+    .hero p { font-size: 1.3rem; color: #d8f7ff; max-width: 800px; margin: 0 auto; }
 
-    /* CTA panel */
-    .cta-wrap{
-      max-width: 900px; margin: 0.5rem auto 2rem; padding: 1rem;
-      background: rgba(255,255,255,0.06); border-radius: 16px;
-      backdrop-filter: blur(6px); border:1px solid rgba(255,255,255,0.08);
+    /* CTA Heading and Subheading */
+    .cta-headline { margin-top: 3rem; text-align: center; }
+    .cta-headline h2 { font-size: 2.2rem; margin-bottom: 0.5rem; color: #00f6ff; }
+    .cta-headline p { font-size: 1.1rem; color: #d8f7ff; margin: 0 auto 1.5rem; max-width: 700px; }
+
+    /* CTA box */
+    .cta {
+      margin: 0 auto; padding: 1rem; max-width: 980px;
+      display: grid; grid-template-columns: 1fr auto auto; gap: .6rem; align-items: center;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px; backdrop-filter: blur(6px);
     }
-    .cta-row{
-      display:flex; gap:0.6rem; align-items:stretch; justify-content:center; flex-wrap:wrap;
+    .cta input[type="text"]{
+      width: 100%; padding: .9rem 1rem; border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.18); background: rgba(0,0,0,0.35); color: #fff; font-size: 1rem;
     }
-    .domain-input{
-      flex:1 1 260px; min-width:220px;
-      background: rgba(0,0,0,0.55);
-      color:#fff; border:1px solid rgba(255,255,255,0.15);
-      border-radius:12px; padding:0.9rem 1rem; font-size:1rem; outline:none;
+    .btn {
+      padding: .9rem 1rem; border-radius: 10px; border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(0,0,0,0.45); color: #fff; font-weight: 600; cursor: pointer; white-space: nowrap;
     }
-    .btn{
-      border:0; cursor:pointer; padding:0.9rem 1rem; border-radius:12px; font-weight:700;
-    }
-    .btn-dark{ background:#2b2b2b; color:#fff; }
-    .btn-grad{
-      background: linear-gradient(90deg, var(--c2), var(--c1));
-      color:#00222a;
-    }
-    .msg{
-      margin-top:0.8rem; font-size:0.95rem;
-      background: rgba(0,0,0,0.5);
-      border:1px solid rgba(255,255,255,0.1);
-      border-radius:10px; padding:0.6rem 0.8rem; max-width:900px; margin-left:auto; margin-right:auto;
-      text-align:left;
+    .btn-primary { background: linear-gradient(90deg, #0aa0ff, #00f6ff); color:#00222a; }
+    .results { max-width: 980px; margin: .6rem auto 0; font-size: .95rem; }
+    .status-line { padding:.6rem .8rem; border-radius:10px; background: rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.12); }
+    .ok { color: #39e58c; } .bad { color: #ff6b6b; }
+    .suggestions { margin-top: .5rem; display: flex; flex-wrap: wrap; gap: .5rem; }
+    .sugg {
+      padding: .45rem .7rem; border-radius: 999px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18);
+      cursor: pointer; font-size: .9rem;
     }
 
-    .services{ padding: 3.5rem 1.25rem; background: rgba(0,0,0,0.7); }
-    .services h2{ text-align:center; font-size:2rem; color:var(--c1); margin:0 0 2rem; }
-    .service{
-      background: rgba(255,255,255,0.05); border-radius:10px; padding:1.5rem; margin:1rem auto; max-width:900px;
-      transition:transform .2s ease;
-    }
-    .service:hover{ transform: scale(1.02); }
-    .service h3 a{ color: var(--c1); text-decoration:none; }
-    .service p{ color:#f1f9fc; }
-
-    footer{
-      font-size: .72rem; line-height:1.45; padding:1.5rem; background:rgba(0,0,0,0.9); color:#ccc;
+    .phone-pill {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px; padding: .4rem .9rem; display: inline-flex; align-items: center; gap: .5rem; font-size: 1rem;
     }
 
-    .floating-icon{
-      position:fixed; right:20px; width:60px; height:60px; border-radius:50%;
-      padding:6px; border:2px solid rgba(255,255,255,0.15); background-color:transparent;
-      background-image: radial-gradient(rgba(255,255,255,0.1), transparent);
-      transition: transform .3s ease, box-shadow .3s ease; z-index:999;
+    .services { padding: 4rem 2rem; }
+    .services h2 { text-align: center; font-size: 2.5rem; color: #00f6ff; margin-bottom: 3rem; }
+    .service {
+      background-color: rgba(255,255,255,0.05); border-radius: 10px; padding: 2rem; margin: 2rem auto; max-width: 900px;
+      transition: transform 0.3s ease;
     }
-    .floating-icon img{ width:100%; height:100%; border-radius:50%; filter:brightness(.85); }
-    .floating-icon:hover{ transform: scale(1.1); }
-    .whatsapp-float{ bottom:90px; }
-    .linkedin-float{ bottom:20px; }
+    .service:hover { transform: scale(1.02); }
+    .service h3 a { color: #00f6ff; font-size: 1.6rem; text-decoration: none; }
+    .service p { font-size: 1.1rem; color: #f1f9fc; }
 
-    /* Consent banner */
-    #consent-banner{
-      position:fixed; left:0; right:0; bottom:0; z-index:9999;
-      background: rgba(0,0,0,.92); color:#fff; padding:12px 14px;
-      display:flex; gap:10px; align-items:center; justify-content:center; flex-wrap:wrap;
-      font: 14px/1.4 system-ui, Segoe UI, Roboto, Arial;
+    footer { font-size: 0.65rem; line-height: 1.4; padding: 1.5rem; color: #ccc; }
+
+    /* Floating Icons */
+    .floating-icon { position: fixed; right: 20px; width: 60px; height: 60px; border-radius: 50%; padding: 6px;
+      border: 2px solid rgba(255, 255, 255, 0.15); background-color: transparent;
+      background-image: radial-gradient(rgba(255,255,255,0.1), transparent); transition: transform 0.3s ease, box-shadow 0.3s ease; z-index: 999;
     }
-    #consent-banner button{
-      padding:8px 12px; border-radius:8px; border:1px solid #666; background:#222; color:#fff; cursor:pointer;
-    }
-    #consent-banner .accept{ border:0; background: linear-gradient(90deg, var(--c2), var(--c1)); color:#00222a; font-weight:700; }
+    .floating-icon img { width: 100%; height: 100%; border-radius: 50%; filter: brightness(0.85); }
+    .floating-icon:hover { transform: scale(1.1); }
+    .whatsapp-float { bottom: 90px; box-shadow: 0 0 6px rgba(0, 0, 0, 0.3), 0 0 4px rgba(37, 211, 102, 0.3); }
+    .linkedin-float { bottom: 20px; box-shadow: 0 0 6px rgba(0, 0, 0, 0.3), 0 0 4px rgba(10, 102, 194, 0.3); }
   </style>
 </head>
 <body>
-  <nav>
+  <nav id="mainNav">
     <div class="logo">Vionyx</div>
     <div class="hamburger" onclick="toggleMenu()">☰</div>
     <ul class="nav-links">
-      <li class="nav-home"><a href="index.html">Home</a></li>
+      <li><a class="phone-pill" href="tel:+443301272170">📞 +44 330 127 2170</a></li>
       <li><a href="contact.html">Get in Touch</a></li>
       <li><a href="about.html">Our Journey</a></li>
       <li><a href="blog.html">Insights</a></li>
@@ -203,149 +178,142 @@
   </nav>
 
   <header class="hero">
-    <h1>Launch Your Business Online in Days</h1>
-    <p>Secure your domain, choose a package, and go live fast — hosting, email, and support included.</p>
-
-    <!-- CTA panel -->
-    <div class="cta-wrap">
-      <div class="cta-row">
-        <input id="domainInput" class="domain-input" type="text" placeholder="yourbrand (we’ll try .com)" aria-label="Domain name">
-        <button id="checkBtn" class="btn btn-dark" type="button" onclick="checkDomain()">Check Domain</button>
-        <a class="btn btn-grad" href="packages.html">Create Website</a>
-      </div>
-      <div id="domainMsg" class="msg" aria-live="polite"></div>
-    </div>
+    <h1>Vionyx</h1>
+    <p>Empowering your digital future with cutting-edge software, infrastructure, and AI-driven solutions.</p>
   </header>
 
+  <!-- CTA Heading -->
+  <div class="cta-headline">
+    <h2>Launch Your Business Online in Days</h2>
+    <p>Secure your domain, choose a package, and go live fast — hosting, email, and support included.</p>
+  </div>
+
+  <!-- CTA -->
+  <section class="cta">
+    <input id="domainInput" type="text" placeholder="Your business name or domain (e.g., vionyx or vionyx.co.uk)">
+    <button id="checkBtn" class="btn">Check Domain</button>
+    <button id="createBtn" class="btn btn-primary">Create Website</button>
+  </section>
+  <div class="results" id="results" aria-live="polite"></div>
+
+  <!-- Services Section -->
   <section class="services">
     <h2>Our Services</h2>
-    <div class="service"><h3><a href="custom-software.html">Custom Software Development</a></h3><p>Powerful, scalable software tailored to your business.</p></div>
-    <div class="service"><h3><a href="web-mobile.html">Web & Mobile Solutions</a></h3><p>Responsive websites and mobile apps for performance and beauty.</p></div>
-    <div class="service"><h3><a href="ai-and-automation.html">AI & Automation</a></h3><p>Automate tasks and gain insights with AI-powered solutions.</p></div>
-    <div class="service"><h3><a href="cybersecurity-solutions.html">Cybersecurity</a></h3><p>Advanced threat detection, compliance, and protection strategies.</p></div>
-    <div class="service"><h3><a href="devops-infrastructure.html">DevOps & Infrastructure</a></h3><p>Automate deployments and streamline your CI/CD pipeline.</p></div>
-    <div class="service"><h3><a href="ui-ux.html">UI/UX Design</a></h3><p>Beautiful, intuitive experiences for your users.</p></div>
+    <div class="service">
+      <h3><a href="custom-software.html">Custom Software Development</a></h3>
+      <p>We build powerful, scalable software tailored to your business — from enterprise tools to innovative startups.</p>
+    </div>
+    <div class="service">
+      <h3><a href="web-mobile.html">Web & Mobile Solutions</a></h3>
+      <p>Engage your audience with cutting-edge websites and responsive mobile apps built for performance and beauty.</p>
+    </div>
+    <div class="service">
+      <h3><a href="ai-and-automation.html">AI & Automation</a></h3>
+      <p>Use the power of AI to automate tasks, gain insights, and supercharge decision-making with intelligent solutions.</p>
+    </div>
+    <div class="service">
+      <h3><a href="cybersecurity-solutions.html">Cybersecurity Solutions</a></h3>
+      <p>Protect your digital infrastructure with advanced threat detection, compliance services, and endpoint protection strategies.</p>
+    </div>
+    <div class="service">
+      <h3><a href="devops-infrastructure.html">DevOps & Infrastructure</a></h3>
+      <p>Automate deployments, streamline CI/CD pipelines, and improve reliability with end-to-end DevOps and infrastructure support.</p>
+    </div>
+    <div class="service">
+      <h3><a href="ui-ux.html">UI/UX Design Services</a></h3>
+      <p>Deliver delightful user experiences through intuitive design, prototyping, and usability testing for web and mobile apps.</p>
+    </div>
   </section>
 
+  <!-- Footer -->
   <footer>
-    <p>
-      <strong>Vionyx</strong> provides <em>affordable web design</em>, <em>AI automation</em>, and <em>custom software development</em> tailored for UK small businesses. Explore our hosting plans with <em>free setup</em>, <em>business email</em>, and <em>ongoing support</em>.
+    <p><strong>Vionyx</strong> provides affordable web design, AI automation tools, and custom software development tailored for UK small businesses. Explore our budget-friendly website hosting plans with free setup, business email, and ongoing support.</p>
+    <p style="margin-top:0.8rem;">
+      Services: AI automation, low-cost website development, UI/UX design, mobile apps, cybersecurity, SEO-ready sites, booking systems, dashboards, WordPress, APIs, data scraping, automation workflows.
     </p>
-    <p style="margin-top:.8rem;">
-      Services: automation, web dev, UI/UX, mobile apps, cybersecurity, SEO-ready websites, booking systems, dashboards, WordPress, API integrations, scraping tools, and automation workflows.
-    </p>
-    <p style="margin-top:.8rem;">
-      Serving clients across the UK: London, Birmingham, Manchester, Liverpool, Leeds, Sheffield, Newcastle, Nottingham, Leicester, Bristol, Coventry, Wolverhampton, Southampton, Portsmouth, Brighton, Plymouth, Norwich, Derby, York, Oxford, Cambridge, Reading, Milton Keynes, Luton, Swansea, Cardiff, Newport, Bangor, Edinburgh, Glasgow, Dundee, Aberdeen, Inverness, Belfast, Derry, and more.
+    <p style="margin-top:0.8rem;">
+      Serving clients across the UK: London, Birmingham, Manchester, Liverpool, Leeds, Sheffield, Newcastle, Nottingham, Leicester, Bristol, Coventry, Wolverhampton, Southampton, Portsmouth, Brighton, Plymouth, Norwich, Derby, York, Oxford, Cambridge, Reading, Milton Keynes, Luton, Swansea, Cardiff, Newport, Bangor, Edinburgh, Glasgow, Dundee, Aberdeen, Inverness, Belfast, Derry.
     </p>
   </footer>
 
   <!-- Floating Icons -->
-  <a href="https://wa.me/443301272170" class="floating-icon whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
-    <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WhatsApp Chat"/>
-  </a>
-  <a href="https://www.linkedin.com/company/108062318/" class="floating-icon linkedin-float" target="_blank" aria-label="LinkedIn Page">
-    <img src="https://cdn-icons-png.flaticon.com/512/145/145807.png" alt="LinkedIn"/>
-  </a>
+  <a href="https://wa.me/443301272170" class="floating-icon whatsapp-float" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WhatsApp"/></a>
+  <a href="https://www.linkedin.com/company/108062318/admin/dashboard/" class="floating-icon linkedin-float" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/145/145807.png" alt="LinkedIn"/></a>
 
-  <!-- Consent Banner -->
-  <div id="consent-banner">
-    <span>We use cookies to analyze traffic and improve your experience.</span>
-    <div>
-      <button onclick="applyConsent(false)">Reject all</button>
-      <button class="accept" onclick="applyConsent(true)">Accept all</button>
+  <!-- Simple Consent Banner -->
+  <div id="consent-banner" style="
+    position:fixed;left:0;right:0;bottom:0;z-index:9999;
+    background:rgba(0,0,0,.92);color:#fff;padding:16px;display:flex;gap:12px;
+    align-items:center;justify-content:center;flex-wrap:wrap;font:14px/1.4 system-ui,Segoe UI,Roboto,Arial">
+    <span style="max-width:820px;opacity:.95">
+      We use cookies to analyze traffic and improve your experience. You can accept or reject optional cookies.
+    </span>
+    <div style="display:flex;gap:8px">
+      <button onclick="applyConsent(false)" style="padding:10px 14px;border:1px solid #666;background:#222;color:#fff;border-radius:8px;cursor:pointer">Reject all</button>
+      <button onclick="applyConsent(true)" style="padding:10px 14px;border:0;background:linear-gradient(90deg,#0aa0ff,#00f6ff);color:#00222a;border-radius:8px;cursor:pointer;font-weight:700">Accept all</button>
     </div>
   </div>
-
-  <!-- Domain checker (static, RDAP-based) -->
   <script>
-    function toggleMenu(){ const m=document.querySelector('.nav-links'); m.classList.toggle('show'); }
-
-    // Helpers
-    function normalizeDomain(raw) {
-      let d = (raw || "").trim().toLowerCase();
-      if (!d) return "";
-      d = d.replace(/^https?:\/\//, "").split("/")[0];
-      if (!d.includes(".")) d += ".com";
-      return d;
-    }
-    function setMsg(text, color) {
-      const msg = document.getElementById("domainMsg");
-      if (!msg) return;
-      msg.textContent = text;
-      msg.style.color = color || "";
-    }
-    async function fetchText(url, opts) {
-      const r = await fetch(url, Object.assign({ method: "GET" }, opts || {}));
-      return { status: r.status, ok: r.ok, text: await r.text() };
-    }
-    const REGISTRY_RDAP = {
-      "com": d => `https://rdap.verisign.com/com/v1/domain/${d}`,
-      "net": d => `https://rdap.verisign.com/net/v1/domain/${d}`,
-      "org": d => `https://rdap.publicinterestregistry.net/rdap/org/domain/${d}`
-    };
-    function getTLD(domain) { const parts = domain.split("."); return parts.length>1 ? parts.pop() : ""; }
-
-    async function rdapCheckDirect(domain) {
-      // 1) try rdap.org
+    // Hide banner if a choice already exists
+    (function(){
       try {
-        const res = await fetch(`https://rdap.org/domain/${encodeURIComponent(domain)}`, { method: "GET" });
-        if (res.status === 200) return { available: false, via: "rdap.org" };
-        if (res.status === 404) return { available: true, via: "rdap.org" };
-      } catch(_) {}
-      // 2) try registry endpoint for common TLDs
-      try {
-        const tld = getTLD(domain), build = REGISTRY_RDAP[tld];
-        if (build) {
-          const res = await fetch(build(domain), { method: "GET" });
-          if (res.status === 200) return { available: false, via: "registry" };
-          if (res.status === 404) return { available: true, via: "registry" };
+        if (localStorage.getItem('consentChoice')) {
+          var b = document.getElementById('consent-banner');
+          if (b) b.remove();
         }
-      } catch(_) {}
-      // 3) last resort: permissive CORS proxy
-      try {
-        const prox = `https://api.allorigins.win/raw?url=${encodeURIComponent("https://rdap.org/domain/" + domain)}`;
-        const { status, text } = await fetchText(prox);
-        if (/\"objectClassName\"\\s*:\\s*\"domain\"/i.test(text)) return { available: false, via: "proxy" };
-        if (/not\\s+found|error 404|no\\s+such\\s+domain/i.test(text)) return { available: true, via: "proxy" };
-        return { available: null, via: "proxy", status };
-      } catch(e) {
-        return { available: null, err: e && (e.message || e.toString()) };
-      }
-    }
+      } catch(e) {}
+    })();
+  </script>
 
-    async function checkDomain() {
-      const input = document.getElementById("domainInput");
-      const btn = document.getElementById("checkBtn");
-      if (!input) return;
-      const domain = normalizeDomain(input.value);
-      if (!domain) { setMsg("Please enter a domain name."); return; }
-
-      setMsg(`Checking ${domain}…`, "");
-      if (btn) btn.disabled = true;
-
-      try {
-        const { available, status } = await rdapCheckDirect(domain);
-        if (available === true) {
-          setMsg(`✅ ${domain} is available!`, "#00d67a");
-        } else if (available === false) {
-          setMsg(`❌ ${domain} is already registered.`, "#ff6666");
-        } else {
-          setMsg(`ℹ️ Couldn’t check (${status || "unknown"}). Try another TLD like .net / .org.`, "");
-        }
-      } catch (e) {
-        setMsg("⚠️ Could not check now. Please try again.", "");
-      } finally {
-        if (btn) btn.disabled = false;
-      }
-    }
-
-    // Submit on Enter
-    document.addEventListener("DOMContentLoaded", () => {
-      const input = document.getElementById("domainInput");
-      if (input) input.addEventListener("keydown", (e) => { if (e.key === "Enter") checkDomain(); });
-      // Hide consent banner if already set
-      try { if (localStorage.getItem('consentChoice')) { const b=document.getElementById('consent-banner'); if (b) b.remove(); } } catch(e){}
+  <!-- Scripts -->
+  <script>
+    function toggleMenu(){ document.querySelector('.nav-links').classList.toggle('show'); }
+    document.addEventListener('click',e=>{
+      const nav=document.getElementById('mainNav');
+      const menu=document.querySelector('.nav-links');
+      if(nav && !nav.contains(e.target) && menu.classList.contains('show')) menu.classList.remove('show');
     });
+
+    // ===== Domain checker + redirect =====
+    const API_BASE = "http://localhost:8080"; // change if API is reverse-proxied on same origin
+    const input = document.getElementById('domainInput');
+    const results = document.getElementById('results');
+
+    function normalizeDomain(v){
+      v=(v||"").trim().toLowerCase().replace(/^https?:\/\//,"").replace(/^www\./,"");
+      if(!v)return""; if(!v.includes("."))return v+".com"; return v;
+    }
+    function showStatus({domain,available,suggestions,note}){
+      results.innerHTML=""; if(!domain&&note){results.textContent=note;return;}
+      const line=document.createElement("div"); line.className="status-line";
+      if(available===true)line.innerHTML=`<strong class="ok">✅ ${domain}</strong> is available`;
+      else if(available===false)line.innerHTML=`<strong class="bad">❌ ${domain}</strong> is taken`;
+      else line.innerHTML=`ℹ️ Checking ${domain}… ${note||""}`; results.appendChild(line);
+      if(Array.isArray(suggestions)&&suggestions.length){
+        const wrap=document.createElement("div");wrap.className="suggestions";
+        suggestions.forEach(s=>{const b=document.createElement("button");b.className="sugg";b.textContent=s.domain;b.onclick=()=>{input.value=s.domain;};wrap.appendChild(b);});
+        results.appendChild(wrap);
+      }
+    }
+    async function doCheck(){
+      const domain=normalizeDomain(input.value); if(!domain){showStatus({domain:"",note:"Enter a name to check."});return;}
+      showStatus({domain}); try{
+        const r=await fetch(`${API_BASE}/api/check?domain=${encodeURIComponent(domain)}`); const j=await r.json();
+        let sugg=[]; if(j.available===false){const key=domain.split(".")[0].replace(/[^a-z0-9]+/g,"");
+          const r2=await fetch(`${API_BASE}/api/suggest-available?q=${encodeURIComponent(key)}&limit=6`);
+          const j2=await r2.json().catch(()=>({})); sugg=Array.isArray(j2?.available)?j2.available:[];}
+        showStatus({domain,available:j.available,suggestions:sugg});
+      }catch(e){showStatus({domain,note:"Could not check now."});}
+    }
+    function goCreate(){
+      const domain=normalizeDomain(input.value);
+      const url=new URL("packages.html",window.location.href);
+      if(domain)url.searchParams.set("domain",domain);
+      window.location.href=url.toString();
+    }
+    document.getElementById('checkBtn').onclick=doCheck;
+    document.getElementById('createBtn').onclick=goCreate;
+    input.addEventListener('keydown',e=>{if(e.key==="Enter")doCheck();});
   </script>
 </body>
 </html>
